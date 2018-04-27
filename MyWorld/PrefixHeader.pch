@@ -1,0 +1,73 @@
+//
+//  PrefixHeader.pch
+//  广生盈
+//
+//  Created by wayneking on 18/10/2017.
+//  Copyright © 2017 wayneking. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+//头文件
+#import "AFNetworking.h"
+#import "WBUtil.h"
+#import "MJExtension.h"
+#import "MJRefresh.h"
+#import "Masonry.h"
+#import "UIImageView+WebCache.h"
+#import "CCProgressHUD.h"
+#import "WBNetWorkTool.h"
+
+#define WEAKSELF __weak typeof(self) weakSelf = self;
+
+// 屏幕尺寸
+#define screenWidth     [UIScreen mainScreen].bounds.size.width
+#define screenHeight    [UIScreen mainScreen].bounds.size.height
+
+//适配IPHONEX
+#define  iSIPhoneX (screenWidth == 375.f && screenHeight == 812.f ? YES : NO)
+#define  StatusBarHeight      (iSIPhoneX ? 44.f : 20.f)
+#define  NavgationBarHeight  (iSIPhoneX ? 88.f : 64.f)
+#define TabBarHeight (iSIPhoneX ? (49.f+34.f) : 49.f)
+//IPHONEX刘海
+#define LiuHai 30.f
+
+
+//颜色
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define MainColor [UIColor colorWithRed:20.0/255.0 green:170.0/255.0 blue:255.0/255.0 alpha:1]
+#define BGColor [UIColor whiteColor]
+#define MiddleGray UIColorFromRGB(0x8c8c8c)
+#define LineColor [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1]
+#define LightGrayColor [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1]
+//#define MainColor UIColorFromRGB(0x1bada9)
+
+//自定义Log
+#ifdef DEBUG
+#define WBLog(...) NSLog(__VA_ARGS__)
+#else
+#define WBLog(...)
+#endif
+
+//获得用户信息
+#define UserInfo [[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfo"]
+
+//数据库地址
+#define DBPath [NSTemporaryDirectory() stringByAppendingPathComponent:@"Home.sqlite"]
+
+//网络地址s
+#define BaseUrl @"http://toutiaoapi.mamayy.com"
+//http://47.96.144.118:8081  测试  http://192.168.0.123:8081/api   http://47.96.144.118:8081/api/
+//  生产  http://toutiaoapi.mamayy.com   192.168.0.142
+
+#define APP_ID @"1171678571"
+
+//版本号
+//历史版本 2018041201    2018042001
+#define CurrentVersion @"2018042001"
+#define VersionId @"5.1.0"
+
+
+#endif /* PrefixHeader_pch */

@@ -1,0 +1,110 @@
+PODS:
+  - AFNetworking (3.2.0):
+    - AFNetworking/NSURLSession (= 3.2.0)
+    - AFNetworking/Reachability (= 3.2.0)
+    - AFNetworking/Security (= 3.2.0)
+    - AFNetworking/Serialization (= 3.2.0)
+    - AFNetworking/UIKit (= 3.2.0)
+  - AFNetworking/NSURLSession (3.2.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.0)
+  - AFNetworking/Security (3.2.0)
+  - AFNetworking/Serialization (3.2.0)
+  - AFNetworking/UIKit (3.2.0):
+    - AFNetworking/NSURLSession
+  - FDFullscreenPopGesture (1.1)
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - HMSegmentedControl (1.5.4)
+  - IQKeyboardManager (6.0.1)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.0.0)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.15.3)
+  - pop (1.0.10)
+  - PYSearch (0.8.8)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - SAMKeychain (1.5.3)
+  - SDCycleScrollView (1.75):
+    - SDWebImage (>= 4.0.0)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
+  - STPickerView (2.4)
+  - TZImagePickerController (2.0.1)
+  - ZFPlayer (2.1.6):
+    - Masonry
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - FDFullscreenPopGesture (= 1.1)
+  - FMDB
+  - HMSegmentedControl
+  - IQKeyboardManager
+  - Masonry
+  - MBProgressHUD (~> 1.0.0)
+  - MJExtension
+  - MJRefresh
+  - pop (~> 1.0)
+  - PYSearch
+  - ReactiveCocoa (~> 2.5)
+  - SAMKeychain
+  - SDCycleScrollView
+  - SDWebImage
+  - STPickerView
+  - TZImagePickerController
+  - ZFPlayer
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - FDFullscreenPopGesture
+    - FMDB
+    - HMSegmentedControl
+    - IQKeyboardManager
+    - Masonry
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - pop
+    - PYSearch
+    - ReactiveCocoa
+    - SAMKeychain
+    - SDCycleScrollView
+    - SDWebImage
+    - STPickerView
+    - TZImagePickerController
+    - ZFPlayer
+
+SPEC CHECKSUMS:
+  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
+  IQKeyboardManager: 118602feb2d0b8852cc7387c21db988f2ebdec6d
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  PYSearch: aa3704f283c67667808de6df514c24df03f5f116
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
+  SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  STPickerView: d0e234f230f45bd720a6739d0ae9fbddf038958b
+  TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
+  ZFPlayer: 833cb3974b619bfd01a0ec1ebaabfe6f629e85b4
+
+PODFILE CHECKSUM: 17b07532408059e0e8c6b593c695b8ea4fb782b2
+
+COCOAPODS: 1.5.0
