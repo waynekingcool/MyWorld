@@ -10,4 +10,12 @@
 
 @implementation BookModel
 
+#pragma mark - Getter And Setter
+-(NSMutableArray *)chapArray{
+    if (!_chapArray) {
+        _chapArray = [[NSMutableArray alloc]init];
+    }
+    return _chapArray;
+}
+
 @end

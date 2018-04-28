@@ -8,7 +8,6 @@
 
 #import "BaseController.h"
 #import "Reachability.h"
-#import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 
 @interface BaseController ()
 

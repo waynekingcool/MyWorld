@@ -25,6 +25,15 @@
 #define screenWidth     [UIScreen mainScreen].bounds.size.width
 #define screenHeight    [UIScreen mainScreen].bounds.size.height
 
+//左右间距
+#define margin 15
+#define topdown 10
+
+#define TopSpacing 40.0f
+#define BottomSpacing 40.0f
+#define LeftSpacing 20.0f
+#define RightSpacing  20.0f
+
 //适配IPHONEX
 #define  iSIPhoneX (screenWidth == 375.f && screenHeight == 812.f ? YES : NO)
 #define  StatusBarHeight      (iSIPhoneX ? 44.f : 20.f)
@@ -59,15 +68,7 @@
 
 //网络地址s
 #define BaseUrl @"http://toutiaoapi.mamayy.com"
-//http://47.96.144.118:8081  测试  http://192.168.0.123:8081/api   http://47.96.144.118:8081/api/
-//  生产  http://toutiaoapi.mamayy.com   192.168.0.142
 
-#define APP_ID @"1171678571"
-
-//版本号
-//历史版本 2018041201    2018042001
-#define CurrentVersion @"2018042001"
-#define VersionId @"5.1.0"
 
 
 #endif /* PrefixHeader_pch */

@@ -172,4 +172,13 @@
  @return 返回字符串
  */
 +(NSString *)returnRandomString:(int)count;
+
+
+/**
+ 判断是否为空
+
+ @param string 字符串
+ @return 布尔值 1 空 0 非空
+ */
++ (BOOL) isBlankString:(NSString *)string;
 @end
