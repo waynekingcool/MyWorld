@@ -13,6 +13,11 @@
 
 @interface BookController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 
+@property(nonatomic, assign) NSInteger currentPage; //当前页数
+@property(nonatomic, assign) NSInteger currenChap;  //当前章节
+@property(nonatomic, assign) NSInteger changeChap;  //将要变化的章节
+@property(nonatomic, assign) NSInteger changePage;  //将要变化的页数
+
 @property(nonatomic,strong) BookViewModel *viewModel;
 @property(nonatomic,strong) UIPageViewController *pageViewController;   //翻页VC
 @property(nonatomic,strong) BookPageController *pageController;
