@@ -28,6 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.currenChap = 0;
+    self.currentPage = 0;
+    
     [self createUI];
     
     [self initViewModel];
@@ -67,7 +70,7 @@
         //设置容器
         self.pageController = [[BookPageController alloc]init];
         self.pageController.model = model;
-        [self.pageViewController setViewControllers:@[[self createPageControllerWithChapter:0 page:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self.pageViewController setViewControllers:@[[self createPageControllerWithChapter:self.currenChap page:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }];
 }
 
@@ -86,6 +89,49 @@
 }
 
 #pragma mark - UIPageViewControllerDelegate
+//往前翻
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
+    self.changePage = self.currentPage;
+    self.changeChap = self.currenChap;
+    
+    //第一章和第一页则不能继续往前翻
+    if (self.changeChap == 0 && self.changePage ==0) {
+        return nil;
+    }
+    
+    if (self.changePage == 0) {
+        self.changeChap--;
+        BookChapModel *chapModel = self.viewModel.model.chapArray[self.changeChap];
+        self.changePage = chapModel.pageCount-1;
+    }else{
+        self.changePage--;
+    }
+    
+    return [self createPageControllerWithChapter:self.changeChap page:self.changePage];
+}
+
+//往后翻
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
+    self.changeChap = self.currenChap;
+    self.changePage = self.currentPage;
+    
+    //最后一章的最后一页
+    BookChapModel *model = self.viewModel.model.chapArray.lastObject;
+    if (self.changePage == model.pageCount-1 && self.changeChap == self.viewModel.model.chapArray.count - 1) {
+        return nil;
+    }
+    
+    BookChapModel *tempModel = self.viewModel.model.chapArray[self.changeChap];
+    if (self.changePage == tempModel.pageCount - 1) {
+        //开始下一章的第一页
+        self.changeChap++;
+        self.changePage = 0;
+    }else{
+        self.changePage++;
+    }
+    
+    return [self createPageControllerWithChapter:self.changeChap page:self.changePage];
+}
 
 
 #pragma mark - Getter And Setter
