@@ -10,9 +10,6 @@
 
 @interface HomeCell()
 
-@property(nonatomic,strong) UIImageView *articleImageView;      //小说封面
-@property(nonatomic,strong) UILabel *articleLabel;      //小说名称
-@property(nonatomic,strong) UILabel *authorLabel;   //作者
 
 @end
 

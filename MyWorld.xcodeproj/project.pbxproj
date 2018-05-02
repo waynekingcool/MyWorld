@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C855B67B2099A6E800F7A73E /* 紫川.txt in Resources */ = {isa = PBXBuildFile; fileRef = C855B67A2099A6E700F7A73E /* 紫川.txt */; };
 		C8990E3A2094042A0095D96A /* BookController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8990E392094042A0095D96A /* BookController.m */; };
 		C8990E3E209406410095D96A /* BookViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8990E3D209406410095D96A /* BookViewModel.m */; };
 		C8990E412094067A0095D96A /* BookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8990E402094067A0095D96A /* BookModel.m */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		60A1813EAF3759AE9005EE0F /* Pods-MyWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorld.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorld/Pods-MyWorld.debug.xcconfig"; sourceTree = "<group>"; };
+		C855B67A2099A6E700F7A73E /* 紫川.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "紫川.txt"; sourceTree = "<group>"; };
 		C8990E382094042A0095D96A /* BookController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookController.h; sourceTree = "<group>"; };
 		C8990E392094042A0095D96A /* BookController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookController.m; sourceTree = "<group>"; };
 		C8990E3C209406410095D96A /* BookViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookViewModel.h; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 		C8F1BFA52093177B00AEFE72 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C855B67A2099A6E700F7A73E /* 紫川.txt */,
 				C8F1BFB4209328B200AEFE72 /* picture */,
 				C8F1BFA82093262D00AEFE72 /* placeholder.png */,
 				C8F1BFA62093178700AEFE72 /* test.txt */,
@@ -440,6 +443,7 @@
 				C8F1BFBE209328E600AEFE72 /* 3.jpg in Resources */,
 				C8F1BFC1209328E600AEFE72 /* 6.jpg in Resources */,
 				C8F1BFCA209328F700AEFE72 /* pikaqiu.jpg in Resources */,
+				C855B67B2099A6E800F7A73E /* 紫川.txt in Resources */,
 				C8F1BFC0209328E600AEFE72 /* 2.jpg in Resources */,
 				C8F1BF5F2092F84F00AEFE72 /* LaunchScreen.storyboard in Resources */,
 				C8F1BF5C2092F84F00AEFE72 /* Assets.xcassets in Resources */,
@@ -698,7 +702,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MyWorld/PrefixHeader.pch;
 				INFOPLIST_FILE = MyWorld/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = wayneking.MyWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -715,7 +722,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MyWorld/PrefixHeader.pch;
 				INFOPLIST_FILE = MyWorld/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = wayneking.MyWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

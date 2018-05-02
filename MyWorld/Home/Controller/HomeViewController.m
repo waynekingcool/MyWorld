@@ -46,11 +46,15 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 2;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (indexPath.row == 1) {
+        cell.articleLabel.text = @"紫川";
+        cell.authorLabel.text = @"不知名";
+    }
     return cell;
 }
 
@@ -61,10 +65,18 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    BookController *vc = [[BookController alloc]init];
-    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"test"withExtension:@"txt"];
-    vc.bookUrl = fileURL;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.row == 0) {
+        BookController *vc = [[BookController alloc]init];
+        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"test"withExtension:@"txt"];
+        vc.bookUrl = fileURL;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        BookController *vc = [[BookController alloc]init];
+        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"紫川"withExtension:@"txt"];
+        vc.bookUrl = fileURL;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 
 
