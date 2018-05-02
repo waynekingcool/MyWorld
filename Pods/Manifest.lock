@@ -20,6 +20,7 @@ PODS:
   - FMDB/standard (2.7.2)
   - HMSegmentedControl (1.5.4)
   - IQKeyboardManager (6.0.1)
+  - LLSlideMenu (1.0.6)
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJExtension (3.0.13)
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - FMDB
   - HMSegmentedControl
   - IQKeyboardManager
+  - LLSlideMenu (~> 1.0.6)
   - Masonry
   - MBProgressHUD (~> 1.0.0)
   - MJExtension
@@ -71,6 +73,7 @@ SPEC REPOS:
     - FMDB
     - HMSegmentedControl
     - IQKeyboardManager
+    - LLSlideMenu
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -91,6 +94,7 @@ SPEC CHECKSUMS:
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
   IQKeyboardManager: 118602feb2d0b8852cc7387c21db988f2ebdec6d
+  LLSlideMenu: c36309289c462544e58dc83b675b1a38be735a99
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
@@ -105,6 +109,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
   ZFPlayer: 833cb3974b619bfd01a0ec1ebaabfe6f629e85b4
 
-PODFILE CHECKSUM: 17b07532408059e0e8c6b593c695b8ea4fb782b2
+PODFILE CHECKSUM: 481e5d1bde3c5682ee3487ef93ac24f07513eeda
 
 COCOAPODS: 1.5.0

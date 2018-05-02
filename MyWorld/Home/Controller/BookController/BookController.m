@@ -8,10 +8,12 @@
 
 #import "BookController.h"
 #import "BookPageController.h"
+//vender
+#import <LLSlideMenu/LLSlideMenu.h>
 //viewModel
 #import "BookViewModel.h"
 
-@interface BookController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+@interface BookController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property(nonatomic, assign) NSInteger currentPage; //当前页数
 @property(nonatomic, assign) NSInteger currenChap;  //当前章节
@@ -23,6 +25,9 @@
 @property(nonatomic,strong) BookPageController *pageController;
 
 @property(nonatomic, assign) BOOL isTap;    //是否显示导航条
+
+@property(nonatomic,strong) LLSlideMenu *sideMenu;  //侧边栏 用来显示所有章节
+@property(nonatomic,strong) UITableView *chapTableView; //显示所有章节
 @end
 
 @implementation BookController
@@ -38,6 +43,7 @@
     
     //增加点击手势
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapSelf:)];
+    tapGR.delegate = self;
     [self.view addGestureRecognizer:tapGR];
     
     [self createUI];
@@ -68,7 +74,10 @@
 - (void)createUI{
     [self.view addSubview:self.pageViewController.view];
     [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.sideMenu];
     
+    //目录
+    [self.rightButton setImage:[UIImage imageNamed:@"Icon-order"] forState:UIControlStateNormal];
 }
 
 //初始化viewModel的操作
@@ -91,6 +100,7 @@
         //设置容器
         self.pageController = [[BookPageController alloc]init];
         [self.pageViewController setViewControllers:@[[self createPageControllerWithChapter:self.currenChap page:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self.chapTableView reloadData];
     }];
 }
 
@@ -159,6 +169,45 @@
     self.currenChap = self.changeChap;
 }
 
+#pragma mark - TableViewDelegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.viewModel.model.chapTitleArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    NSString *title = self.viewModel.model.chapTitleArray[indexPath.row];
+    cell.textLabel.text = title;
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 30;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //关闭侧边栏
+    [self.sideMenu ll_closeSlideMenu];
+    //跳转到该章
+    self.currenChap = indexPath.row;
+    self.currentPage = 0;
+    [self.pageViewController setViewControllers:@[[self createPageControllerWithChapter:self.currenChap page:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+}
+
+#pragma mark -  手势代理
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    //处理tableview和全局view手势冲突
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - ResponseEvent
 - (void)tapSelf:(UITapGestureRecognizer *)sender{
     self.isTap = !self.isTap;
@@ -166,6 +215,15 @@
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }else{
         [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+}
+
+//打开目录
+-(void)rightButtonAction{
+    if (self.sideMenu.ll_isOpen) {
+        [self.sideMenu ll_closeSlideMenu];
+    }else{
+        [self.sideMenu ll_openSlideMenu];
     }
 }
 
@@ -185,6 +243,27 @@
         _pageViewController.dataSource = self;
     }
     return _pageViewController;
+}
+
+-(LLSlideMenu *)sideMenu{
+    if (!_sideMenu) {
+        _sideMenu = [[LLSlideMenu alloc]init];
+        _sideMenu.ll_menuWidth = 200.f; //宽度
+        _sideMenu.ll_menuBackgroundColor = ProtectEyeColor; //背景色
+        _sideMenu.ll_springDamping = 20;       // 阻力
+        _sideMenu.ll_springVelocity = 15;      // 速度
+        _sideMenu.ll_springFramesNum = 60;     // 关键帧数量
+        [_sideMenu addSubview:self.chapTableView];
+        self.chapTableView.frame = _sideMenu.bounds;
+    }
+    return _sideMenu;
+}
+
+-(UITableView *)chapTableView{
+    if (!_chapTableView) {
+        _chapTableView = [WBUtil createTableView:self SeparatorStyle:UITableViewCellSeparatorStyleSingleLine rowHeight:0 CellClass:[UITableViewCell class]];
+    }
+    return _chapTableView;
 }
 
 @end

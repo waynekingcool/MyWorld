@@ -10,6 +10,7 @@
 
 @interface BookViewModel()
 @property(nonatomic,strong) NSMutableArray *chapArray;
+@property(nonatomic,strong) NSMutableArray *chaptItleArray;
 @end
 
 
@@ -38,6 +39,7 @@
             [self separterChapWithContent:content];
             BookModel *model = [[BookModel alloc]init];
             model.chapArray = [self.chapArray copy];
+            model.chapTitleArray = [self.chaptItleArray copy];
             //将model发出
             [subscriber sendNext:model];
             [subscriber sendCompleted];
@@ -85,18 +87,23 @@
                 NSInteger len = local;
                 chapModel.chapContent = [content substringWithRange:NSMakeRange(0, len)];
                 [self.chapArray addObject:chapModel];
+                [self.chaptItleArray addObject:@"引子"];
             }else if(i == match.count - 1){
                 //最后一个
                 BookChapModel *chapModel = [[BookChapModel alloc]init];
-                chapModel.chapTitle = [content substringWithRange:range];
+                NSString *title = [content substringWithRange:range];
+                chapModel.chapTitle = title;
                 chapModel.chapContent = [content substringWithRange:NSMakeRange(local, content.length-local)];
                 [self.chapArray addObject:chapModel];
+                [self.chaptItleArray addObject:title];
             }else if(i > 0){
                 BookChapModel *chapModel = [[BookChapModel alloc]init];
-                chapModel.chapTitle = [content substringWithRange:lastRange];
+                NSString *title = [content substringWithRange:lastRange];
+                chapModel.chapTitle = title;
                 NSInteger len = range.location - lastRange.location;
                 chapModel.chapContent = [content substringWithRange:NSMakeRange(lastRange.location, len)];
                 [self.chapArray addObject:chapModel];
+                [self.chaptItleArray addObject:title];
             }
             
             lastRange = range;
@@ -117,6 +124,13 @@
         _chapArray = [[NSMutableArray alloc]init];
     }
     return _chapArray;
+}
+
+-(NSMutableArray *)chaptItleArray{
+    if (!_chaptItleArray) {
+        _chaptItleArray = [[NSMutableArray alloc]init];
+    }
+    return _chaptItleArray;
 }
 
 @end

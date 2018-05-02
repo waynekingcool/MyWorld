@@ -23,5 +23,6 @@ pod "PYSearch"
 pod 'SAMKeychain'
 pod 'FMDB'
 pod 'FDFullscreenPopGesture', '1.1'
+pod 'LLSlideMenu', '~> 1.0.6'
 
 end

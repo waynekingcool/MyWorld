@@ -13,5 +13,7 @@
 @interface BookModel : NSObject
 
 @property(nonatomic,strong) NSMutableArray *chapArray;
+///标题数组
+@property(nonatomic,strong) NSMutableArray *chapTitleArray;
 
 @end

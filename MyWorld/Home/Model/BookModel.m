@@ -18,4 +18,11 @@
     return _chapArray;
 }
 
+-(NSMutableArray *)chapTitleArray{
+    if (!_chapTitleArray) {
+        _chapTitleArray = [[NSMutableArray alloc]init];
+    }
+    return _chapTitleArray;
+}
+
 @end
