@@ -21,6 +21,8 @@
 @property(nonatomic,strong) BookViewModel *viewModel;
 @property(nonatomic,strong) UIPageViewController *pageViewController;   //翻页VC
 @property(nonatomic,strong) BookPageController *pageController;
+
+@property(nonatomic, assign) BOOL isTap;    //是否显示导航条
 @end
 
 @implementation BookController
@@ -30,6 +32,13 @@
     
     self.currenChap = 0;
     self.currentPage = 0;
+    
+    //不显示导航条
+    self.isTap = NO;
+    
+    //增加点击手势
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapSelf:)];
+    [self.view addGestureRecognizer:tapGR];
     
     [self createUI];
     
@@ -42,6 +51,18 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)createUI{
@@ -69,7 +90,6 @@
         WBLog(@"加载完毕咯 %@",model);
         //设置容器
         self.pageController = [[BookPageController alloc]init];
-//        self.pageController.model = model;
         [self.pageViewController setViewControllers:@[[self createPageControllerWithChapter:self.currenChap page:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }];
 }
@@ -91,7 +111,6 @@
 #pragma mark - UIPageViewControllerDelegate
 //往前翻
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
-    WBLog(@"333333");
     self.changePage = self.currentPage;
     self.changeChap = self.currenChap;
     
@@ -113,7 +132,6 @@
 
 //往后翻
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
-    WBLog(@"2222222");
     self.changeChap = self.currenChap;
     self.changePage = self.currentPage;
     
@@ -136,11 +154,20 @@
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers{
-    WBLog(@"11111");
+    //将要翻页时候执行该方法
     self.currentPage = self.changePage;
     self.currenChap = self.changeChap;
 }
 
+#pragma mark - ResponseEvent
+- (void)tapSelf:(UITapGestureRecognizer *)sender{
+    self.isTap = !self.isTap;
+    if (self.isTap) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }else{
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+}
 
 #pragma mark - Getter And Setter
 -(BookViewModel *)viewModel{

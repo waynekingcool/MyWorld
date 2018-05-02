@@ -9,6 +9,7 @@
 #import "BookPageController.h"
 #import "BookReadView.h"
 #import <CoreText/CoreText.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BookPageController ()
 
@@ -20,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self createUI];
 }
 
@@ -28,25 +29,22 @@
     [super didReceiveMemoryWarning];
 }
 
-
 - (void)createUI{
     [self.view addSubview:self.readView];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = ProtectEyeColor;
     [self prefersStatusBarHidden];
 }
+
 
 #pragma mark - Getter And Setter
 -(BookReadView *)readView{
     if (!_readView) {
         _readView = [[BookReadView alloc] initWithFrame:CGRectMake(LeftSpacing,TopSpacing, self.view.frame.size.width-LeftSpacing-RightSpacing, self.view.frame.size.height-TopSpacing-BottomSpacing)];
         
-        //暂时显示第一页
-//        BookChapModel *model = self.model.chapArray[0];
-        
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:self.content];
         //样式
         NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-        dict[NSForegroundColorAttributeName] = [UIColor cyanColor];
+        dict[NSForegroundColorAttributeName] = [UIColor blackColor];
         dict[NSFontAttributeName] = [UIFont systemFontOfSize:14];
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
         paragraphStyle.lineSpacing = 10.f;

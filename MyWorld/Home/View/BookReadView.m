@@ -22,7 +22,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -48,7 +48,7 @@
 
 - (void)drawSelectedPath:(NSArray *)array LeftDot:(CGRect *)leftDot RightDot:(CGRect *)rightDot{
     CGMutablePathRef path = CGPathCreateMutable();
-    [[UIColor cyanColor] setFill];
+    [[UIColor blackColor] setFill];
     for (int i = 0; i < array.count; i++) {
         CGRect rect = CGRectFromString([array objectAtIndex:i]);
         CGPathAddRect(path, NULL, rect);

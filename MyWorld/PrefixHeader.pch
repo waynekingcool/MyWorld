@@ -51,6 +51,7 @@
 #define MiddleGray UIColorFromRGB(0x8c8c8c)
 #define LineColor [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1]
 #define LightGrayColor [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1]
+#define ProtectEyeColor [UIColor colorWithRed:199/255.0 green:237/255.0 blue:204/255.0 alpha:1]
 //#define MainColor UIColorFromRGB(0x1bada9)
 
 //自定义Log
