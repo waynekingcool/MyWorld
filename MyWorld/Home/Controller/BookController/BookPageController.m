@@ -41,9 +41,9 @@
         _readView = [[BookReadView alloc] initWithFrame:CGRectMake(LeftSpacing,TopSpacing, self.view.frame.size.width-LeftSpacing-RightSpacing, self.view.frame.size.height-TopSpacing-BottomSpacing)];
         
         //暂时显示第一页
-        BookChapModel *model = self.model.chapArray[0];
+//        BookChapModel *model = self.model.chapArray[0];
         
-        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:model.chapContent];
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:self.content];
         //样式
         NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
         dict[NSForegroundColorAttributeName] = [UIColor cyanColor];
@@ -53,7 +53,7 @@
         paragraphStyle.alignment = NSTextAlignmentJustified;
         dict[NSParagraphStyleAttributeName] = paragraphStyle;
         //设置样式
-        [attrStr setAttributes:dict range:NSMakeRange(0, model.chapContent.length)];
+        [attrStr setAttributes:dict range:NSMakeRange(0, self.content.length)];
         
         CTFramesetterRef setterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attrStr);
         CGPathRef pathRef = CGPathCreateWithRect(CGRectMake(0,0, _readView.frame.size.width, _readView.frame.size.height), NULL);
@@ -62,7 +62,7 @@
         CFRelease(pathRef);
         
         _readView.frameRef = frameRef;
-        _readView.content = model.chapContent;
+        _readView.content = self.content;
     }
     return _readView;
 }

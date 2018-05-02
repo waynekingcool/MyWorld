@@ -69,7 +69,7 @@
         WBLog(@"加载完毕咯 %@",model);
         //设置容器
         self.pageController = [[BookPageController alloc]init];
-        self.pageController.model = model;
+//        self.pageController.model = model;
         [self.pageViewController setViewControllers:@[[self createPageControllerWithChapter:self.currenChap page:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }];
 }
@@ -91,6 +91,7 @@
 #pragma mark - UIPageViewControllerDelegate
 //往前翻
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
+    WBLog(@"333333");
     self.changePage = self.currentPage;
     self.changeChap = self.currenChap;
     
@@ -112,6 +113,7 @@
 
 //往后翻
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
+    WBLog(@"2222222");
     self.changeChap = self.currenChap;
     self.changePage = self.currentPage;
     
@@ -133,6 +135,12 @@
     return [self createPageControllerWithChapter:self.changeChap page:self.changePage];
 }
 
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers{
+    WBLog(@"11111");
+    self.currentPage = self.changePage;
+    self.currenChap = self.changeChap;
+}
+
 
 #pragma mark - Getter And Setter
 -(BookViewModel *)viewModel{
@@ -145,6 +153,7 @@
 -(UIPageViewController *)pageViewController{
     if (!_pageViewController) {
         _pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        _pageViewController.view.frame = self.view.frame;
         _pageViewController.delegate = self;
         _pageViewController.dataSource = self;
     }
