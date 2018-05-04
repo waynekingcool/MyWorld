@@ -68,7 +68,7 @@
 #define DBPath [NSTemporaryDirectory() stringByAppendingPathComponent:@"Home.sqlite"]
 
 //网络地址s
-#define BaseUrl @"http://toutiaoapi.mamayy.com"
+#define BaseUrl @"http://127.0.0.1:8000/"
 
 
 

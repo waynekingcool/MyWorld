@@ -17,18 +17,6 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    //注册来源 1.移动设备 2.网页 3.其他来源
-    [manager.requestSerializer setValue:@"1" forHTTPHeaderField:@"regFrom"];
-     //设备系统  1 安卓  2 ios
-    [manager.requestSerializer setValue:@"2" forHTTPHeaderField:@"deviceOs"];
-    //设备ID
-    [manager.requestSerializer setValue:[self getDeviceId] forHTTPHeaderField:@"deviceId"];
-    //设备型号
-    [manager.requestSerializer setValue:[self iphoneType] forHTTPHeaderField:@"deviceType"];
-    //token
-    [manager.requestSerializer setValue:[self getToken] forHTTPHeaderField:@"accessToken"];
-    //userid
-    [manager.requestSerializer setValue:[self getUserId] forHTTPHeaderField:@"userId"];
     
     //请求超时30秒
     manager.requestSerializer.timeoutInterval = 30.f;
@@ -64,18 +52,6 @@
     
 //    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     [manager.requestSerializer setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    //注册来源 1.移动设备 2.网页 3.其他来源
-    [manager.requestSerializer setValue:@"1" forHTTPHeaderField:@"regFrom"];
-    //设备系统  1 安卓  2 ios
-    [manager.requestSerializer setValue:@"2" forHTTPHeaderField:@"deviceOs"];
-    //设备ID
-    [manager.requestSerializer setValue:[self getDeviceId] forHTTPHeaderField:@"deviceId"];
-    //设备型号
-    [manager.requestSerializer setValue:[self iphoneType] forHTTPHeaderField:@"deviceType"];
-    //token
-    [manager.requestSerializer setValue:[self getToken] forHTTPHeaderField:@"accessToken"];
-    //userid
-    [manager.requestSerializer setValue:[self getUserId] forHTTPHeaderField:@"userId"];
     
     //请求超时30秒
     manager.requestSerializer.timeoutInterval = 30.f;
@@ -131,10 +107,6 @@
     [request setValue:[self getDeviceId] forHTTPHeaderField:@"deviceId"];
     //设备型号
     [request setValue:[self iphoneType] forHTTPHeaderField:@"deviceType"];
-    //token
-    [request setValue:[self getToken] forHTTPHeaderField:@"accessToken"];
-    //userid
-    [request setValue:[self getUserId] forHTTPHeaderField:@"userId"];
     
     
     [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
@@ -178,10 +150,6 @@
     [request setValue:[self getDeviceId] forHTTPHeaderField:@"deviceId"];
     //设备型号
     [request setValue:[self iphoneType] forHTTPHeaderField:@"deviceType"];
-    //token
-    [request setValue:[self getToken] forHTTPHeaderField:@"token"];
-    //userid
-    [request setValue:[self getUserId] forHTTPHeaderField:@"userId"];
     //....
     [request setValue:headJson forHTTPHeaderField:@"token"];
     
@@ -245,12 +213,6 @@
     return currentDeviceUUIDStr;
 }
 
-//获取userId
-- (NSString *)getUserId{
-    NSNumber *userId = UserInfo[@"userId"];
-    return [userId stringValue];
-    
-}
 
 //获取设备型号
 - (NSString*)iphoneType {
@@ -399,15 +361,6 @@
     
 }
 
-//获取token
-- (NSString *)getToken{
-    NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:@"accessToken"];
-    if (![self isBlankString:token]) {
-        return token;
-    }else{
-        return @"";
-    }
-}
 
 - (BOOL) isBlankString:(NSString *)string {
     if (string == nil || string == NULL) {
