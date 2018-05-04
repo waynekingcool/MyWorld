@@ -50,6 +50,22 @@
         make.centerY.mas_equalTo(self.contentView.mas_centerY).offset(0);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-margin);
     }];
+    
+    UIView *lineView = [WBUtil createLineView];
+    [self.contentView addSubview:lineView];
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(1);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(margin);
+        make.width.mas_equalTo(screenWidth-margin);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
+    }];
+}
+
+-(void)setModel:(BookIndexModel *)model{
+    _model = model;
+    self.bookTypeLabel.text = model.bookType;
+    self.bookTitleLabel.text = model.title;
+    self.bookAuthorLabel.text = model.author;
 }
 
 @end

@@ -21,4 +21,6 @@
 @property(nonatomic,copy) NSString *bookurl;
 ///小说封面
 @property(nonatomic,copy) NSString *imageUrl;
+///小说描述
+@property(nonatomic,copy) NSString *bookDesc;
 @end

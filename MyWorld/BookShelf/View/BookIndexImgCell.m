@@ -7,6 +7,7 @@
 //
 
 #import "BookIndexImgCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface BookIndexImgCell()
 
@@ -59,10 +60,28 @@
     self.descLabel.numberOfLines = 3;
     [self.contentView addSubview:self.descLabel];
     [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.bookTitleLabel.mas_top).offset(topdown);
+        make.top.mas_equalTo(self.bookTitleLabel.mas_bottom).offset(topdown);
         make.left.mas_equalTo(self.bookImageView.mas_right).offset(10);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-margin);
     }];
+    
+    UIView *lineView = [WBUtil createLineView];
+    [self.contentView addSubview:lineView];
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(1);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(margin);
+        make.width.mas_equalTo(screenWidth-margin);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
+    }];
+}
+
+-(void)setModel:(BookIndexModel *)model{
+    _model = model;
+    
+    [self.bookImageView sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    self.bookTitleLabel.text = model.title;
+    self.bookAuthorLabel.text = model.author;
+    self.descLabel.text = model.bookDesc;
 }
 
 @end
