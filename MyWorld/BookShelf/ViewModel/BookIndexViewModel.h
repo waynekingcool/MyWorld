@@ -18,6 +18,8 @@
 @property(nonatomic,strong)BookIndexModel *model;
 //是否为热门model
 @property(nonatomic) BOOL isHot;
+///小说链接
+@property(nonatomic,copy) NSString *path;
 
 
 ///获取某一分类的个数

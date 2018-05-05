@@ -7,6 +7,8 @@
 //
 
 #import "BookIndexController.h"
+//controller
+#import "BookInfoController.h"
 //view
 #import "BookIndexImgCell.h"
 #import "BookIndexNoImgCell.h"
@@ -37,8 +39,6 @@
 }
 
 - (void)createUI{
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self setStatusBarBackgroundColor:[WBUtil createColor:247 green:247 blue:247]];
     
     [self.view addSubview:self.tableView];
     self.tableView.frame = CGRectMake(0, 0, screenWidth, screenHeight-49);
@@ -53,13 +53,13 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    [self setStatusBarBackgroundColor:[WBUtil createColor:247 green:247 blue:247]];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    
+    [self setStatusBarBackgroundColor:[UIColor whiteColor]];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
@@ -143,6 +143,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self.viewModel getModelBySection:indexPath.section WithRow:indexPath.row];
+    
+    BookInfoController *vc = [[BookInfoController alloc]init];
+    vc.path = self.viewModel.path;
+    vc.title = self.viewModel.model.title;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Getter And Setter

@@ -96,6 +96,7 @@
                 BookIndexModel *model = array[row];
                 self.isHot = [self isHotModel:key];
                 self.model = model;
+                self.path = [self getBookPath:model.bookurl];
                 break;
             }
         }
@@ -122,6 +123,13 @@
         }
     }
     return @"";
+}
+
+//获取小说链接
+- (NSString *)getBookPath:(NSString *)string{
+    NSArray *split = [string componentsSeparatedByString:@"/"];
+    NSString *path = [NSString stringWithFormat:@"%@_%@/",split[split.count-3],split[split.count-2]];
+    return path;
 }
 
 
