@@ -102,12 +102,26 @@
     }
 }
 
+//是否为热门推荐
 - (BOOL)isHotModel:(NSString *)key{
     if ([key isEqualToString:@"hot"]) {
         return YES;
     }else{
         return NO;
     }
+}
+
+//返回分类标题
+- (NSString *)getHeadViewTitle:(NSInteger)section{
+    NSDictionary *dic = self.dataArray[section];
+    for (NSString *key in [dic allKeys]) {
+        if ([key isEqualToString:@"hot"]) {
+            return @"热门推荐";
+        }else{
+            return key;
+        }
+    }
+    return @"";
 }
 
 

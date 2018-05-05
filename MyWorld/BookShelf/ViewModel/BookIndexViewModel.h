@@ -22,6 +22,8 @@
 
 ///获取某一分类的个数
 - (NSInteger)getCount:(NSInteger)section;
-//获取某一分类其中的某个model
+///获取某一分类其中的某个model
 - (void)getModelBySection:(NSInteger)section WithRow:(NSInteger)row;
+///返回分类标题
+- (NSString *)getHeadViewTitle:(NSInteger)section;
 @end

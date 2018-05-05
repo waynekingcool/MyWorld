@@ -38,9 +38,17 @@
 
 - (void)createUI{
     self.view.backgroundColor = [UIColor whiteColor];
+    [self setStatusBarBackgroundColor:[WBUtil createColor:247 green:247 blue:247]];
     
     [self.view addSubview:self.tableView];
     self.tableView.frame = CGRectMake(0, 0, screenWidth, screenHeight-49);
+}
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -123,6 +131,16 @@
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    BookIndexSectionView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headview"];
+    view.titleStr = [self.viewModel getHeadViewTitle:section];
+    return view;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 50;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -140,6 +158,7 @@
         _tableView = [WBUtil createTableView:self SeparatorStyle:UITableViewCellSeparatorStyleNone rowHeight:80 CellClass:[UITableViewCell class]];
         [_tableView registerClass:[BookIndexNoImgCell class] forCellReuseIdentifier:@"nothot"];
         [_tableView registerClass:[BookIndexImgCell class] forCellReuseIdentifier:@"hot"];
+        [_tableView registerClass:[BookIndexSectionView class] forHeaderFooterViewReuseIdentifier:@"headview"];
     }
     return _tableView;
 }

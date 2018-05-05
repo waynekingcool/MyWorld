@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BookIndexSectionView : UIView
+@interface BookIndexSectionView : UITableViewHeaderFooterView
 @property(nonatomic,copy) NSString *titleStr;
 @end

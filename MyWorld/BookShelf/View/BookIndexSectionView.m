@@ -16,8 +16,8 @@
 
 @implementation BookIndexSectionView
 
--(instancetype)init{
-    if (self = [super init]) {
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.titleLabel = [WBUtil createLabel:@"暂无标题" FontSize:17 FontColor:[UIColor blackColor]];
         [self addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -27,6 +27,8 @@
     }
     return self;
 }
+
+
 
 -(void)setTitleStr:(NSString *)titleStr{
     _titleStr = titleStr;
