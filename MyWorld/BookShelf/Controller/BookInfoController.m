@@ -7,6 +7,7 @@
 //
 
 #import "BookInfoController.h"
+#import "WebBookController.h"
 //view
 #import "BookInfoCell.h"
 #import "BookInfoSectionView.h"
@@ -114,6 +115,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 50;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.viewModel getModelWIthSection:indexPath.section WithRow:indexPath.row];
+    
+    WebBookController *vc = [[WebBookController alloc]init];
+    vc.webUrl = [self.viewModel getChapUrlWithSection:indexPath.section WithRow:indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

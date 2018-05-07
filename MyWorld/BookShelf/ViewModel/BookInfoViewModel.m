@@ -94,6 +94,12 @@
     }
 }
 
+//获取章节url
+- (NSURL *)getChapUrlWithSection:(NSInteger)section WithRow:(NSInteger)row{
+    BookInfoChapModel *model = [self getModelWIthSection:section WithRow:row];
+    return [NSURL URLWithString:model.chapUrl];
+}
+
 #pragma mark - Getter And Setter
 -(NSMutableArray *)lastArray{
     if (!_lastArray) {

@@ -27,4 +27,6 @@
 - (NSInteger)getChapCount:(NSInteger)section;
 ///获取model
 - (BookInfoChapModel *)getModelWIthSection:(NSInteger)section WithRow:(NSInteger)row;
+///获取章节url
+- (NSURL *)getChapUrlWithSection:(NSInteger)section WithRow:(NSInteger)row;
 @end

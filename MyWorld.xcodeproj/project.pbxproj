@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C817C34D209FED7D00A472B4 /* WebBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = C817C34C209FED7D00A472B4 /* WebBookController.m */; };
+		C817C350209FED9E00A472B4 /* WebBookViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C817C34F209FED9E00A472B4 /* WebBookViewModel.m */; };
 		C855B67B2099A6E800F7A73E /* 紫川.txt in Resources */ = {isa = PBXBuildFile; fileRef = C855B67A2099A6E700F7A73E /* 紫川.txt */; };
 		C88DAA84209C06D600AC9252 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DAA82209C06D500AC9252 /* TabBarController.m */; };
 		C88DAA8F209C102A00AC9252 /* BookIndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DAA8E209C102A00AC9252 /* BookIndexController.m */; };
@@ -71,6 +73,10 @@
 
 /* Begin PBXFileReference section */
 		60A1813EAF3759AE9005EE0F /* Pods-MyWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorld.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorld/Pods-MyWorld.debug.xcconfig"; sourceTree = "<group>"; };
+		C817C34B209FED7D00A472B4 /* WebBookController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebBookController.h; sourceTree = "<group>"; };
+		C817C34C209FED7D00A472B4 /* WebBookController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebBookController.m; sourceTree = "<group>"; };
+		C817C34E209FED9E00A472B4 /* WebBookViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebBookViewModel.h; sourceTree = "<group>"; };
+		C817C34F209FED9E00A472B4 /* WebBookViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebBookViewModel.m; sourceTree = "<group>"; };
 		C855B67A2099A6E700F7A73E /* 紫川.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "紫川.txt"; sourceTree = "<group>"; };
 		C88DAA82209C06D500AC9252 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		C88DAA83209C06D500AC9252 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -217,6 +223,8 @@
 				C88DAA9D209C3E8000AC9252 /* BookIndexViewModel.m */,
 				C8B64808209DA4A20071EA21 /* BookInfoViewModel.h */,
 				C8B64809209DA4A20071EA21 /* BookInfoViewModel.m */,
+				C817C34E209FED9E00A472B4 /* WebBookViewModel.h */,
+				C817C34F209FED9E00A472B4 /* WebBookViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -228,6 +236,8 @@
 				C88DAA8E209C102A00AC9252 /* BookIndexController.m */,
 				C8B647F2209D88570071EA21 /* BookInfoController.h */,
 				C8B647F3209D88570071EA21 /* BookInfoController.m */,
+				C817C34B209FED7D00A472B4 /* WebBookController.h */,
+				C817C34C209FED7D00A472B4 /* WebBookController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -685,6 +695,7 @@
 				C8990E4A209460F80095D96A /* BookReadView.m in Sources */,
 				C8F1BFB3209326DD00AEFE72 /* HomeCell.m in Sources */,
 				C8B6480A209DA4A20071EA21 /* BookInfoViewModel.m in Sources */,
+				C817C34D209FED7D00A472B4 /* WebBookController.m in Sources */,
 				C8B64807209DA2300071EA21 /* BookInfoChapModel.m in Sources */,
 				C8F1BF9E209316D200AEFE72 /* UIView+TTAutoLayout.m in Sources */,
 				C8F1BF812093163C00AEFE72 /* UILabel+Copy.m in Sources */,
@@ -696,6 +707,7 @@
 				C8F1BFA2209316D200AEFE72 /* TTRing.m in Sources */,
 				C88DAA95209C10DB00AC9252 /* BookIndexNoImgCell.m in Sources */,
 				C88DAA92209C10C300AC9252 /* BookIndexImgCell.m in Sources */,
+				C817C350209FED9E00A472B4 /* WebBookViewModel.m in Sources */,
 				C8B647F4209D88570071EA21 /* BookInfoController.m in Sources */,
 				C88DAA8F209C102A00AC9252 /* BookIndexController.m in Sources */,
 				C8B64801209D96E40071EA21 /* BookInfoTableHeadView.m in Sources */,
