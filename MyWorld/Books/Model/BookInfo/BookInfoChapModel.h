@@ -13,4 +13,6 @@
 @property(nonatomic,copy) NSString *chapUrl;
 ///章节名称
 @property(nonatomic,copy) NSString *chapTitle;
+///章节id
+@property(nonatomic,copy) NSString *chapId;
 @end
