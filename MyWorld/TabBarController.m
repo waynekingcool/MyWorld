@@ -9,6 +9,7 @@
 #import "TabBarController.h"
 #import "HomeViewController.h"
 #import "BookIndexController.h"
+#import "BookShelfController.h"
 
 @interface TabBarController ()
 
@@ -33,7 +34,10 @@
     [self setUpOneChildVcWithVc:home Image:@"Btn-hp-pre" selectedImage:@"Btn-hp" title:@"首页"];
     
     BookIndexController *index = [[BookIndexController alloc]init];
-    [self setUpOneChildVcWithVc:index Image:@"Btn-sort-pre" selectedImage:@"Btn-sort" title:@"书架"];
+    [self setUpOneChildVcWithVc:index Image:@"Btn-sort-pre" selectedImage:@"Btn-sort" title:@"推荐"];
+    
+    BookShelfController *shelf = [[BookShelfController alloc]init];
+    [self setUpOneChildVcWithVc:shelf Image:@"Btn-sort-pre" selectedImage:@"Btn-sort" title:@"书架"];
 
 }
 

@@ -23,6 +23,9 @@
 		C8990E44209406AF0095D96A /* BookChapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8990E43209406AF0095D96A /* BookChapModel.m */; };
 		C8990E47209459660095D96A /* BookPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8990E46209459660095D96A /* BookPageController.m */; };
 		C8990E4A209460F80095D96A /* BookReadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8990E49209460F80095D96A /* BookReadView.m */; };
+		C89A7F6420A195160057B31A /* BookShelfController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89A7F6320A195160057B31A /* BookShelfController.m */; };
+		C89A7F6720A19A360057B31A /* BookChapListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89A7F6620A19A360057B31A /* BookChapListController.m */; };
+		C89A7F6A20A19A5E0057B31A /* BookChapListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C89A7F6920A19A5E0057B31A /* BookChapListCell.m */; };
 		C8B647F4209D88570071EA21 /* BookInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B647F3209D88570071EA21 /* BookInfoController.m */; };
 		C8B647FB209D90220071EA21 /* BookInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B647FA209D90220071EA21 /* BookInfoCell.m */; };
 		C8B647FE209D90400071EA21 /* BookInfoSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B647FD209D90400071EA21 /* BookInfoSectionView.m */; };
@@ -104,6 +107,12 @@
 		C8990E46209459660095D96A /* BookPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookPageController.m; sourceTree = "<group>"; };
 		C8990E48209460F80095D96A /* BookReadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookReadView.h; sourceTree = "<group>"; };
 		C8990E49209460F80095D96A /* BookReadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookReadView.m; sourceTree = "<group>"; };
+		C89A7F6220A195160057B31A /* BookShelfController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookShelfController.h; sourceTree = "<group>"; };
+		C89A7F6320A195160057B31A /* BookShelfController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookShelfController.m; sourceTree = "<group>"; };
+		C89A7F6520A19A360057B31A /* BookChapListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookChapListController.h; sourceTree = "<group>"; };
+		C89A7F6620A19A360057B31A /* BookChapListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookChapListController.m; sourceTree = "<group>"; };
+		C89A7F6820A19A5E0057B31A /* BookChapListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookChapListCell.h; sourceTree = "<group>"; };
+		C89A7F6920A19A5E0057B31A /* BookChapListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookChapListCell.m; sourceTree = "<group>"; };
 		C8B647F2209D88570071EA21 /* BookInfoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookInfoController.h; sourceTree = "<group>"; };
 		C8B647F3209D88570071EA21 /* BookInfoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookInfoController.m; sourceTree = "<group>"; };
 		C8B647F9209D90220071EA21 /* BookInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookInfoCell.h; sourceTree = "<group>"; };
@@ -280,6 +289,51 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		C89A7F5D20A194FF0057B31A /* BookShelf */ = {
+			isa = PBXGroup;
+			children = (
+				C89A7F5E20A194FF0057B31A /* ViewModel */,
+				C89A7F5F20A194FF0057B31A /* Controller */,
+				C89A7F6020A194FF0057B31A /* Model */,
+				C89A7F6120A194FF0057B31A /* View */,
+			);
+			path = BookShelf;
+			sourceTree = "<group>";
+		};
+		C89A7F5E20A194FF0057B31A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C89A7F5F20A194FF0057B31A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C89A7F6220A195160057B31A /* BookShelfController.h */,
+				C89A7F6320A195160057B31A /* BookShelfController.m */,
+				C89A7F6520A19A360057B31A /* BookChapListController.h */,
+				C89A7F6620A19A360057B31A /* BookChapListController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C89A7F6020A194FF0057B31A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C89A7F6120A194FF0057B31A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C89A7F6820A19A5E0057B31A /* BookChapListCell.h */,
+				C89A7F6920A19A5E0057B31A /* BookChapListCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C8B647F5209D8FC70071EA21 /* BookIndex */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +401,7 @@
 		C8F1BF512092F84D00AEFE72 /* MyWorld */ = {
 			isa = PBXGroup;
 			children = (
+				C89A7F5D20A194FF0057B31A /* BookShelf */,
 				C88DAA85209C0BE500AC9252 /* Books */,
 				C8F1BFAA2093268400AEFE72 /* Home */,
 				C8F1BFA52093177B00AEFE72 /* Resources */,
@@ -698,6 +753,7 @@
 				C817C34D209FED7D00A472B4 /* WebBookController.m in Sources */,
 				C8B64807209DA2300071EA21 /* BookInfoChapModel.m in Sources */,
 				C8F1BF9E209316D200AEFE72 /* UIView+TTAutoLayout.m in Sources */,
+				C89A7F6A20A19A5E0057B31A /* BookChapListCell.m in Sources */,
 				C8F1BF812093163C00AEFE72 /* UILabel+Copy.m in Sources */,
 				C8F1BF832093163C00AEFE72 /* WBSearchBar.m in Sources */,
 				C8B647FB209D90220071EA21 /* BookInfoCell.m in Sources */,
@@ -705,6 +761,7 @@
 				C8F1BFA0209316D200AEFE72 /* TTFaveButton.m in Sources */,
 				C88DAA84209C06D600AC9252 /* TabBarController.m in Sources */,
 				C8F1BFA2209316D200AEFE72 /* TTRing.m in Sources */,
+				C89A7F6720A19A360057B31A /* BookChapListController.m in Sources */,
 				C88DAA95209C10DB00AC9252 /* BookIndexNoImgCell.m in Sources */,
 				C88DAA92209C10C300AC9252 /* BookIndexImgCell.m in Sources */,
 				C817C350209FED9E00A472B4 /* WebBookViewModel.m in Sources */,
@@ -729,6 +786,7 @@
 				C8F1BFB0209326AC00AEFE72 /* HomeViewController.m in Sources */,
 				C8F1BF9F209316D200AEFE72 /* UIView+TTKit.m in Sources */,
 				C8990E47209459660095D96A /* BookPageController.m in Sources */,
+				C89A7F6420A195160057B31A /* BookShelfController.m in Sources */,
 				C8F1BF892093169C00AEFE72 /* CCProgressHUD.m in Sources */,
 				C8F1BFA1209316D200AEFE72 /* TTFaveIcon.m in Sources */,
 				C88DAA9E209C3E8000AC9252 /* BookIndexViewModel.m in Sources */,
