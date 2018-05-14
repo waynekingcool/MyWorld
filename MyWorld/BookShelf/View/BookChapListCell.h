@@ -13,5 +13,7 @@
 @property(nonatomic,copy) NSString *title;
 ///是否选中
 @property(nonatomic, assign) BOOL isSelect;
+///是否下载
+@property(nonatomic,assign) BOOL isDown;
 
 @end

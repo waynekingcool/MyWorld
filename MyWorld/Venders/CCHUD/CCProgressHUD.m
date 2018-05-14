@@ -92,4 +92,17 @@
     hub.activityIndicatorColor = [UIColor colorWithHexString:@"#00dba8"];
 
 }
+
++ (void)showProgressMumWithClearColorToView:(UIView *)view WithTitle:(NSString *)title{
+    if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
+    //快速显示一个提示信息
+    MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hub.labelText = title;
+    //隐藏时候从父类控件移除
+    hub.removeFromSuperViewOnHide = YES;
+    //YES代表需要蒙版效果
+    hub.dimBackground = YES;
+    hub.color = [UIColor colorWithHexString:@"#f0f0f0"];
+    hub.activityIndicatorColor = [UIColor colorWithHexString:@"#00dba8"];
+}
 @end

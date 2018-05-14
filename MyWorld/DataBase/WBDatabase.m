@@ -13,7 +13,6 @@ static FMDatabase *single = nil;
 
 + (FMDatabase *)shareDB{
     NSString *path = DBPath;
-    WBLog(@"DBPath: %@",DBPath);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         single = [FMDatabase databaseWithPath:path];
@@ -62,6 +61,28 @@ static FMDatabase *single = nil;
         return false;
     }
 }
+
+//根据条件进行查询,判断是否存在
++ (BOOL)isExistWithSQL:(NSString *)sql WithTableName:(NSString *)name{
+    FMDatabase *db = [WBDatabase shareDB];
+    //检查表是否存在
+    BOOL isExist = [WBDatabase createTableWithTitle:name];
+    if (!isExist) {
+        return false;
+    }
+    
+    FMResultSet *result = [db executeQuery:sql];
+    //总数
+    int count = 0;
+    if ([result next]) {
+        count = [result intForColumnIndex:0];
+    }
+    
+    return count == 0 ? false : true;
+    
+    
+}
+
 @end
 
 

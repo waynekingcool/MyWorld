@@ -34,4 +34,6 @@
 //透明的加载提示菊花视图
 + (void)showProgressMumWithClearColorToView:(UIView *)view;
 
++ (void)showProgressMumWithClearColorToView:(UIView *)view WithTitle:(NSString *)title;
+
 @end

@@ -19,13 +19,20 @@
 @property(nonatomic,strong) WBNetWorkTool *tool;
 @property(nonatomic,strong) NSMutableArray *dataArray;
 @property(nonatomic,strong) NSMutableArray *selectArray;
+@property(nonatomic,strong) NSMutableArray *downLoadArray;
 
+@property(nonatomic, assign) NSInteger downCount;   //下载的总数
+@property(nonatomic, assign) NSInteger finishCount; //已完成数
 @end
 
 @implementation BookChapListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    WBLog(@"DBPath: %@",DBPath);
+    
+    self.downCount = 0;
+    self.finishCount = 0;
     
     [self createUI];
     
@@ -71,8 +78,19 @@
         for (NSDictionary *dic in array) {
             BookInfoChapModel *model = [BookInfoChapModel mj_objectWithKeyValues:dic];
             [self.dataArray addObject:model];
-            //暂时设置为未选中
-            [self.selectArray addObject:@"0"];
+            //暂时设置为未选中 从数据库中进行判断
+            //判断是否已经存在内容
+            NSString *sql = [NSString stringWithFormat:@"select count(*) from %@ where chapId = '%@'",self.title,model.chapId];
+            BOOL isExist = [WBDatabase isExistWithSQL:sql WithTableName:self.title];
+            if (isExist) {
+                WBLog(@"在表: %@ 已经存在数据:%@",self.title,model.chapId);
+                [self.selectArray addObject:@"1"];
+                [self.downLoadArray addObject:@"1"];
+            }else{
+                [self.selectArray addObject:@"0"];
+                [self.downLoadArray addObject:@"0"];
+            }
+            
         }
         //这里还需要和已经缓存过的章节进行比对
         [self.tableView reloadData];
@@ -81,21 +99,35 @@
 
 -(void)rightButtonAction{
     WBLog(@"点击了保存");
+    
+    //遍历已选中的章节,统计总下载数
+    for (int i = 0; i < self.selectArray.count; i++) {
+        NSString *select = self.selectArray[i];
+        NSString *down = self.downLoadArray[i];
+        if (select.boolValue && !down.boolValue) {
+            self.downCount += 1;
+        }
+    }
+    
     //遍历已选中的章节,进行保存
     for (int i = 0; i < self.selectArray.count; i++) {
         NSString *select = self.selectArray[i];
-        if (select.boolValue) {
+        NSString *down = self.downLoadArray[i];
+        if (select.boolValue && !down.boolValue) {
             //保存
+            [CCProgressHUD showProgressMumWithClearColorToView:self.view];
             BookInfoChapModel *model = self.dataArray[i];
             [self loadContent:model.chapUrl WithId:model.chapId];
         }else{
             //跳过
+            
         }
     }
 }
 
 //获取章节内容
 - (void)loadContent:(NSString *)path WithId:(NSString *)chapId{
+
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setValue:path forKey:@"path"];
     
@@ -107,6 +139,13 @@
         BookChapModel *model = [BookChapModel mj_objectWithKeyValues:data];
         model.chapId = chapId;
         [WBDatabase saveModel:model WithTitle:self.title];
+        
+        self.finishCount += 1;
+        if (self.finishCount == self.downCount) {
+            WBLog(@"下载完成");
+        }else{
+            WBLog(@"进度: %ld / %ld",self.finishCount,self.downCount);
+        }
     }];
 }
 
@@ -123,8 +162,10 @@
     BookChapListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     BookInfoChapModel *model = self.dataArray[indexPath.row];
     NSString *selected = self.selectArray[indexPath.row];
+    NSString *down = self.downLoadArray[indexPath.row];
     cell.title = model.chapTitle;
     cell.isSelect = selected.boolValue;
+    cell.isDown = down.boolValue;
     return cell;
 }
 
@@ -139,6 +180,13 @@
         select = @"1";
     }else{
         select = @"0";
+    }
+    
+    NSString *down = self.downLoadArray[indexPath.row];
+    if ([down isEqualToString:@"0"]) {
+        
+    }else{
+        return;
     }
     
     //更新选中状态
@@ -167,6 +215,13 @@
         _selectArray = [[NSMutableArray alloc]init];
     }
     return _selectArray;
+}
+
+-(NSMutableArray *)downLoadArray{
+    if (!_downLoadArray) {
+        _downLoadArray = [[NSMutableArray alloc]init];
+    }
+    return _downLoadArray;
 }
 
 @end

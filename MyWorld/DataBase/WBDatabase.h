@@ -20,4 +20,13 @@
 ///根据model将数据保存到数据库中
 + (BOOL)saveModel:(BookChapModel *)model WithTitle:(NSString *)title;
 
+
+/**
+ 判断是否存在
+
+ @param sql sql语句
+ @param name 表的名称
+ @return bool 0不存在 1 存在
+ */
++ (BOOL)isExistWithSQL:(NSString *)sql WithTableName:(NSString *)name;
 @end
