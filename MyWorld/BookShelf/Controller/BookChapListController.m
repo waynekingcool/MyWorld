@@ -7,6 +7,7 @@
 //
 
 #import "BookChapListController.h"
+#import "WBDatabase.h"
 //cell
 #import "BookChapListCell.h"
 //model
@@ -38,6 +39,9 @@
 - (void)createUI{
     self.title = @"章节列表";
     
+    [self.rightButton setTitle:@"保存" forState:UIControlStateNormal];
+    [self.rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
     self.tableView = [WBUtil createTableView:self SeparatorStyle:UITableViewCellSeparatorStyleNone rowHeight:0 CellClass:[BookChapListCell class]];
     [self.view addSubview:self.tableView];
     self.tableView.frame = CGRectMake(0, 0, screenWidth, screenHeight-64);
@@ -56,6 +60,13 @@
         
     } success:^(NSDictionary *data) {
         [CCProgressHUD hideHUDForView:self.view];
+        
+        //获取标题
+        NSDictionary *info = data[@"bookInfo"];
+        NSString *title = info[@"title"];
+        self.title = title;
+        
+        //获取章节
         NSArray *array = data[@"allChap"];
         for (NSDictionary *dic in array) {
             BookInfoChapModel *model = [BookInfoChapModel mj_objectWithKeyValues:dic];
@@ -65,6 +76,37 @@
         }
         //这里还需要和已经缓存过的章节进行比对
         [self.tableView reloadData];
+    }];
+}
+
+-(void)rightButtonAction{
+    WBLog(@"点击了保存");
+    //遍历已选中的章节,进行保存
+    for (int i = 0; i < self.selectArray.count; i++) {
+        NSString *select = self.selectArray[i];
+        if (select.boolValue) {
+            //保存
+            BookInfoChapModel *model = self.dataArray[i];
+            [self loadContent:model.chapUrl WithId:model.chapId];
+        }else{
+            //跳过
+        }
+    }
+}
+
+//获取章节内容
+- (void)loadContent:(NSString *)path WithId:(NSString *)chapId{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    [dic setValue:path forKey:@"path"];
+    
+    [self.tool getDataWithAct:@"chapContent" params:dic start:^{
+        
+    } fail:^(NSError *error) {
+        
+    } success:^(NSDictionary *data) {
+        BookChapModel *model = [BookChapModel mj_objectWithKeyValues:data];
+        model.chapId = chapId;
+        [WBDatabase saveModel:model WithTitle:self.title];
     }];
 }
 

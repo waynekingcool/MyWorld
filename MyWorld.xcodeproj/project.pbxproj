@@ -33,6 +33,7 @@
 		C8B64804209DA2200071EA21 /* BookInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B64803209DA2200071EA21 /* BookInfoModel.m */; };
 		C8B64807209DA2300071EA21 /* BookInfoChapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B64806209DA2300071EA21 /* BookInfoChapModel.m */; };
 		C8B6480A209DA4A20071EA21 /* BookInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B64809209DA4A20071EA21 /* BookInfoViewModel.m */; };
+		C8DED9A720A2E79500EF72B8 /* WBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DED9A620A2E79500EF72B8 /* WBDatabase.m */; };
 		C8F1BF542092F84D00AEFE72 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F1BF532092F84D00AEFE72 /* AppDelegate.m */; };
 		C8F1BF5C2092F84F00AEFE72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BF5B2092F84F00AEFE72 /* Assets.xcassets */; };
 		C8F1BF5F2092F84F00AEFE72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BF5D2092F84F00AEFE72 /* LaunchScreen.storyboard */; };
@@ -127,6 +128,8 @@
 		C8B64806209DA2300071EA21 /* BookInfoChapModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookInfoChapModel.m; sourceTree = "<group>"; };
 		C8B64808209DA4A20071EA21 /* BookInfoViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookInfoViewModel.h; sourceTree = "<group>"; };
 		C8B64809209DA4A20071EA21 /* BookInfoViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookInfoViewModel.m; sourceTree = "<group>"; };
+		C8DED9A520A2E79500EF72B8 /* WBDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBDatabase.h; sourceTree = "<group>"; };
+		C8DED9A620A2E79500EF72B8 /* WBDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBDatabase.m; sourceTree = "<group>"; };
 		C8F1BF4F2092F84D00AEFE72 /* MyWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F1BF522092F84D00AEFE72 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C8F1BF532092F84D00AEFE72 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -380,6 +383,15 @@
 			path = BookIndex;
 			sourceTree = "<group>";
 		};
+		C8DED9A420A2E74A00EF72B8 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				C8DED9A520A2E79500EF72B8 /* WBDatabase.h */,
+				C8DED9A620A2E79500EF72B8 /* WBDatabase.m */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 		C8F1BF462092F84C00AEFE72 = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +413,7 @@
 		C8F1BF512092F84D00AEFE72 /* MyWorld */ = {
 			isa = PBXGroup;
 			children = (
+				C8DED9A420A2E74A00EF72B8 /* DataBase */,
 				C89A7F5D20A194FF0057B31A /* BookShelf */,
 				C88DAA85209C0BE500AC9252 /* Books */,
 				C8F1BFAA2093268400AEFE72 /* Home */,
@@ -781,6 +794,7 @@
 				C8F1BFA4209316D200AEFE72 /* TTEasing.m in Sources */,
 				C8B647FE209D90400071EA21 /* BookInfoSectionView.m in Sources */,
 				C8F1BF822093163C00AEFE72 /* NSMutableDictionary+ToJson.m in Sources */,
+				C8DED9A720A2E79500EF72B8 /* WBDatabase.m in Sources */,
 				C8990E3A2094042A0095D96A /* BookController.m in Sources */,
 				C8990E412094067A0095D96A /* BookModel.m in Sources */,
 				C8F1BFB0209326AC00AEFE72 /* HomeViewController.m in Sources */,
