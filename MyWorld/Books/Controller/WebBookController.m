@@ -20,6 +20,9 @@
 ///改变的页码
 @property(nonatomic, assign) NSInteger changePage;
 
+@property(nonatomic, assign) BOOL isPre;
+@property(nonatomic, assign) BOOL isNext;
+
 @property(nonatomic, assign) BOOL isTap;    //是否显示导航条
 @end
 
@@ -27,6 +30,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //禁用侧滑
+    id traget = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc]initWithTarget:traget action:nil];
+    [self.view addGestureRecognizer:pan];
     
     self.currentPage = 0;
     self.changePage = 0;
@@ -100,30 +108,41 @@
     [[RACObserve(self.viewModel, model) ignore:nil] subscribeNext:^(BookChapModel *model) {
         @strongify(self);
         WBLog(@"chapModel:%@",model);
-        [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        
+        if (self.isPre) {
+            self.changePage = self.viewModel.model.pageCount - 1;
+            [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.changePage]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+        }else if(self.isNext){
+            self.changePage = 0;
+            self.currentPage = 0;
+            [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.changePage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        }else{
+            [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        }
+        self.isPre = false;
+        self.isNext = false;
     }];
 }
 
 #pragma mark - UIPageViewController
 //往前翻
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
-    self.changePage = self.currentPage;
     
     //第一章和第一页则不能继续往前翻
-    if ([self.viewModel.model.pre isEqualToString:@"已经是第一章"]) {
-        [CCProgressHUD showMwssage:@"已经是第一章" toView:self.view];
+    if ([self.viewModel.model.pre isEqualToString:@"已经是第一章"] && self.changePage == 0) {
+        [CCProgressHUD showMessageInAFlashWithMessage:@"已经是第一章"];
         return nil;
     }
     
     if (self.changePage == 0) {
         //上一章的最后一页
+        self.isPre = true;
         [self loadDataWithUrl:self.viewModel.model.pre];
-        self.changePage = self.viewModel.model.pageCount - 1;
+        return nil;
     }else{
         //下一页
         self.changePage--;
     }
-    
     return [self createPageControllerWithContent:self.changePage];
 }
 
@@ -139,12 +158,12 @@
     
     if (self.changePage == self.viewModel.model.pageCount - 1) {
         //开始下一章的第一页
+        self.isNext = true;
         [self loadDataWithUrl:self.viewModel.model.next];
-        self.changePage = 0;
+        return nil;
     }else{
         self.changePage++;
     }
-    
     return [self createPageControllerWithContent:self.changePage];
 }
 

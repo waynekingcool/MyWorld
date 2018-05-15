@@ -46,6 +46,26 @@
     self.tableView.frame = CGRectMake(0, 0, screenWidth, screenHeight-64);
     self.tableView.tableHeaderView = self.headView;
     self.headView.frame = CGRectMake(0, 0, screenWidth, 200);
+    
+    @weakify(self);
+    self.headView.startSubject = [RACSubject subject];
+    [self.headView.startSubject subscribeNext:^(id x) {
+        //开始阅读 从第一张开始阅读,如果已经有阅读记录,那么从记录开始阅读
+        [self.viewModel getModelWIthSection:1 WithRow:0];
+        WebBookController *vc = [[WebBookController alloc]init];
+        vc.webUrl = [self.viewModel getChapUrlWithSection:1 WithRow:0];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    self.headView.putSubject = [RACSubject subject];
+    [self.headView.putSubject subscribeNext:^(id x) {
+       //放入书架  也就是保存到本地数据库
+    }];
+    
+    self.headView.shelfSubject = [RACSubject subject];
+    [self.headView.shelfSubject subscribeNext:^(id x) {
+       //我的书架
+    }];
 }
 
 - (void)initViewModel{
