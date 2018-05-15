@@ -34,6 +34,7 @@
 		C8B64807209DA2300071EA21 /* BookInfoChapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B64806209DA2300071EA21 /* BookInfoChapModel.m */; };
 		C8B6480A209DA4A20071EA21 /* BookInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B64809209DA4A20071EA21 /* BookInfoViewModel.m */; };
 		C8DED9A720A2E79500EF72B8 /* WBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DED9A620A2E79500EF72B8 /* WBDatabase.m */; };
+		C8E68BC920AA6C5C0024495D /* WBProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E68BC820AA6C5C0024495D /* WBProgressView.m */; };
 		C8F1BF542092F84D00AEFE72 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F1BF532092F84D00AEFE72 /* AppDelegate.m */; };
 		C8F1BF5C2092F84F00AEFE72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BF5B2092F84F00AEFE72 /* Assets.xcassets */; };
 		C8F1BF5F2092F84F00AEFE72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BF5D2092F84F00AEFE72 /* LaunchScreen.storyboard */; };
@@ -130,6 +131,8 @@
 		C8B64809209DA4A20071EA21 /* BookInfoViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookInfoViewModel.m; sourceTree = "<group>"; };
 		C8DED9A520A2E79500EF72B8 /* WBDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBDatabase.h; sourceTree = "<group>"; };
 		C8DED9A620A2E79500EF72B8 /* WBDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBDatabase.m; sourceTree = "<group>"; };
+		C8E68BC720AA6C5C0024495D /* WBProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBProgressView.h; sourceTree = "<group>"; };
+		C8E68BC820AA6C5C0024495D /* WBProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBProgressView.m; sourceTree = "<group>"; };
 		C8F1BF4F2092F84D00AEFE72 /* MyWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F1BF522092F84D00AEFE72 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C8F1BF532092F84D00AEFE72 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 			children = (
 				C89A7F6820A19A5E0057B31A /* BookChapListCell.h */,
 				C89A7F6920A19A5E0057B31A /* BookChapListCell.m */,
+				C8E68BC720AA6C5C0024495D /* WBProgressView.h */,
+				C8E68BC820AA6C5C0024495D /* WBProgressView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -702,6 +707,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/STPickerView/STPickerView.framework",
 				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ZFPlayer/ZFPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
@@ -724,6 +730,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/STPickerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZFPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
@@ -779,6 +786,7 @@
 				C88DAA92209C10C300AC9252 /* BookIndexImgCell.m in Sources */,
 				C817C350209FED9E00A472B4 /* WebBookViewModel.m in Sources */,
 				C8B647F4209D88570071EA21 /* BookInfoController.m in Sources */,
+				C8E68BC920AA6C5C0024495D /* WBProgressView.m in Sources */,
 				C88DAA8F209C102A00AC9252 /* BookIndexController.m in Sources */,
 				C8B64801209D96E40071EA21 /* BookInfoTableHeadView.m in Sources */,
 				C8B64804209DA2200071EA21 /* BookInfoModel.m in Sources */,

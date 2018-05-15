@@ -24,5 +24,5 @@ pod 'SAMKeychain'
 pod 'FMDB'
 pod 'FDFullscreenPopGesture', '1.1'
 pod 'LLSlideMenu', '~> 1.0.6'
-
+pod 'YLProgressBar', '~> 3.10.2'
 end

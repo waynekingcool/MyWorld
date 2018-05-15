@@ -42,6 +42,7 @@ PODS:
   - SDWebImage/Core (4.3.3)
   - STPickerView (2.4)
   - TZImagePickerController (2.0.1)
+  - YLProgressBar (3.10.2)
   - ZFPlayer (2.1.6):
     - Masonry
 
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - SDWebImage
   - STPickerView
   - TZImagePickerController
+  - YLProgressBar (~> 3.10.2)
   - ZFPlayer
 
 SPEC REPOS:
@@ -86,6 +88,7 @@ SPEC REPOS:
     - SDWebImage
     - STPickerView
     - TZImagePickerController
+    - YLProgressBar
     - ZFPlayer
 
 SPEC CHECKSUMS:
@@ -107,8 +110,9 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   STPickerView: d0e234f230f45bd720a6739d0ae9fbddf038958b
   TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
+  YLProgressBar: 365b6c5e934be18b661f79413db33c993c8e8251
   ZFPlayer: 833cb3974b619bfd01a0ec1ebaabfe6f629e85b4
 
-PODFILE CHECKSUM: 481e5d1bde3c5682ee3487ef93ac24f07513eeda
+PODFILE CHECKSUM: a18927fe4ed11e7cc833bddefa34473a7bd06b14
 
 COCOAPODS: 1.5.0

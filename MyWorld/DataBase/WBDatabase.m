@@ -24,7 +24,7 @@ static FMDatabase *single = nil;
 + (BOOL)createTableWithTitle:(NSString *)title{
     FMDatabase *db = [WBDatabase shareDB];
     if ([db open]) {
-        NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (chapTitle text,chapContent text,pre text,next text,chapId text);",title];
+        NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (chapTitle text,chapContent text,pre text,next text,chapId INTEGER);",title];
         BOOL result = [db executeUpdate:sqlStr];
         if (result) {
 //            WBLog(@"表: %@ 创建成功",title);

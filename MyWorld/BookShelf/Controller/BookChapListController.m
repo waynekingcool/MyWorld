@@ -8,6 +8,7 @@
 
 #import "BookChapListController.h"
 #import "WBDatabase.h"
+#import "WBProgressView.h"
 //cell
 #import "BookChapListCell.h"
 //model
@@ -20,6 +21,7 @@
 @property(nonatomic,strong) NSMutableArray *dataArray;
 @property(nonatomic,strong) NSMutableArray *selectArray;
 @property(nonatomic,strong) NSMutableArray *downLoadArray;
+@property(nonatomic,strong) WBProgressView *progressView;   //进度
 
 @property(nonatomic, assign) NSInteger downCount;   //下载的总数
 @property(nonatomic, assign) NSInteger finishCount; //已完成数
@@ -49,9 +51,20 @@
     [self.rightButton setTitle:@"保存" forState:UIControlStateNormal];
     [self.rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
+    [self.rightButton2 setTitle:@"全选" forState:UIControlStateNormal];
+    [self.rightButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
     self.tableView = [WBUtil createTableView:self SeparatorStyle:UITableViewCellSeparatorStyleNone rowHeight:0 CellClass:[BookChapListCell class]];
     [self.view addSubview:self.tableView];
     self.tableView.frame = CGRectMake(0, 0, screenWidth, screenHeight-64);
+    
+    [self.view addSubview:self.progressView];
+    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX).offset(0);
+        make.centerY.mas_equalTo(self.view.mas_centerY).offset(0);
+        make.width.mas_equalTo(300);
+        make.height.mas_equalTo(70);
+    }];
 }
 
 - (void)loadData{
@@ -109,13 +122,17 @@
         }
     }
     
+    //显示进度
+    NSDictionary *dic = @{@"finish":[NSNumber numberWithInteger:self.finishCount] , @"all":[NSNumber numberWithInteger:self.downCount]};
+    self.progressView.dataDic = dic;
+    [self.progressView show];
+    
     //遍历已选中的章节,进行保存
     for (int i = 0; i < self.selectArray.count; i++) {
         NSString *select = self.selectArray[i];
         NSString *down = self.downLoadArray[i];
         if (select.boolValue && !down.boolValue) {
             //保存
-            [CCProgressHUD showProgressMumWithClearColorToView:self.view];
             BookInfoChapModel *model = self.dataArray[i];
             [self loadContent:model.chapUrl WithId:model.chapId];
         }else{
@@ -123,6 +140,14 @@
             
         }
     }
+}
+
+- (void)rightButtonAction2{
+    [self.selectArray removeAllObjects];
+    for (int i = 0 ; i < self.dataArray.count; i++) {
+        [self.selectArray addObject:@"1"];
+    }
+    [self.tableView reloadData];
 }
 
 //获取章节内容
@@ -139,12 +164,15 @@
         BookChapModel *model = [BookChapModel mj_objectWithKeyValues:data];
         model.chapId = chapId;
         [WBDatabase saveModel:model WithTitle:self.title];
+        [self.downLoadArray replaceObjectAtIndex:[chapId integerValue]  withObject:@"1"];
         
+        //更新状态
         self.finishCount += 1;
+        NSDictionary *dic = @{@"finish":[NSNumber numberWithInteger:self.finishCount] , @"all":[NSNumber numberWithInteger:self.downCount]};
+        self.progressView.dataDic = dic;
         if (self.finishCount == self.downCount) {
-            WBLog(@"下载完成");
-        }else{
-            WBLog(@"进度: %ld / %ld",self.finishCount,self.downCount);
+            //刷新
+            [self.tableView reloadData];
         }
     }];
 }
@@ -222,6 +250,13 @@
         _downLoadArray = [[NSMutableArray alloc]init];
     }
     return _downLoadArray;
+}
+
+-(WBProgressView *)progressView{
+    if (!_progressView) {
+        _progressView = [[WBProgressView alloc]init];
+    }
+    return _progressView;
 }
 
 @end
