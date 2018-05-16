@@ -21,6 +21,8 @@
 @property(nonatomic,copy) NSString *pre;
 ///下一章url
 @property(nonatomic,copy) NSString *next;
+///当前url
+@property(nonatomic,copy) NSString *current;
 ///缓存需要用到的id,根据章节名称来定义
 @property(nonatomic,copy) NSString *chapId;
 

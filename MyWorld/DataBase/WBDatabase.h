@@ -29,4 +29,24 @@
  @return bool 0不存在 1 存在
  */
 + (BOOL)isExistWithSQL:(NSString *)sql WithTableName:(NSString *)name;
+
+
+/**
+ 获取缓存数据
+
+ @param tableName 小说名称
+ @param chapTitle 章节名称
+ @return 返回BookChapModel
+ */
++ (BookChapModel *)getDataWithTableName:(NSString *)tableName WithChapName:(NSString *)chapTitle;
+
+
+/**
+ 根据url获取缓存数据
+
+ @param url 链接
+ @param tableName 表的名称
+ @return 返回BookChapModel
+ */
++ (BookChapModel *)getDataWithUrl:(NSString *)url WithTableName:(NSString *)tableName;
 @end

@@ -58,6 +58,31 @@
     }];
 }
 
+#pragma mark - 判断是否有阅读记录
+- (BOOL)hasRecordWithPath:(NSString *)path{
+    self.recordModel = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    if (self.recordModel) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+#pragma mark - 保存阅读记录
+- (void)saveRecordWithTitle:(NSString *)title WithChapTitle:(NSString *)chapTitle WithPage:(NSString *)page{
+    NSString *path = [RecordPath stringByAppendingPathComponent:title];
+    BookRecordModel *model = [[BookRecordModel alloc]init];
+    model.recordTitle = title;
+    model.recordPage = page;
+    model.recordChap = chapTitle;
+    BOOL success = [NSKeyedArchiver archiveRootObject:model toFile:path];
+    if (success) {
+        WBLog(@"Title:%@  ChapTitle:%@  Page:%@ 缓存成功",model.recordTitle,model.recordChap,model.recordPage);
+    }else{
+        WBLog(@"Title:%@  ChapTitle:%@  Page:%@ 缓存失败",model.recordTitle,model.recordChap,model.recordPage);
+    }
+}
+
 #pragma mark - Private Methods
 //根据页数返回内容
 - (NSString *)getContentWithPage:(NSInteger)page{

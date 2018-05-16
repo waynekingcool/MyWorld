@@ -73,6 +73,7 @@
 		C8F1BFCA209328F700AEFE72 /* pikaqiu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BFC7209328F600AEFE72 /* pikaqiu.jpg */; };
 		C8F1BFCB209328F700AEFE72 /* nizhuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BFC8209328F600AEFE72 /* nizhuan.jpg */; };
 		C8F1BFCC209328F700AEFE72 /* huoyan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BFC9209328F600AEFE72 /* huoyan.jpg */; };
+		C8FAA40E20ABC2B7009C7872 /* BookRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FAA40D20ABC2B7009C7872 /* BookRecordModel.m */; };
 		FF29CEE86DCCFF4C4718C351 /* Pods_MyWorld.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4589D3766A32AC233E80BD8 /* Pods_MyWorld.framework */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +196,8 @@
 		C8F1BFC7209328F600AEFE72 /* pikaqiu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pikaqiu.jpg; sourceTree = "<group>"; };
 		C8F1BFC8209328F600AEFE72 /* nizhuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nizhuan.jpg; sourceTree = "<group>"; };
 		C8F1BFC9209328F600AEFE72 /* huoyan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = huoyan.jpg; sourceTree = "<group>"; };
+		C8FAA40C20ABC2B7009C7872 /* BookRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookRecordModel.h; sourceTree = "<group>"; };
+		C8FAA40D20ABC2B7009C7872 /* BookRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookRecordModel.m; sourceTree = "<group>"; };
 		D4589D3766A32AC233E80BD8 /* Pods_MyWorld.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWorld.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED747B27282CB73768B1A626 /* Pods-MyWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorld.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorld/Pods-MyWorld.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,6 +263,7 @@
 		C88DAA88209C0BE500AC9252 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C8FAA40B20ABC2A0009C7872 /* BookRecord */,
 				C8B647F8209D8FFD0071EA21 /* BookIndex */,
 				C8B647F7209D8FFD0071EA21 /* BookInfo */,
 			);
@@ -593,6 +597,15 @@
 			path = picture;
 			sourceTree = "<group>";
 		};
+		C8FAA40B20ABC2A0009C7872 /* BookRecord */ = {
+			isa = PBXGroup;
+			children = (
+				C8FAA40C20ABC2B7009C7872 /* BookRecordModel.h */,
+				C8FAA40D20ABC2B7009C7872 /* BookRecordModel.m */,
+			);
+			path = BookRecord;
+			sourceTree = "<group>";
+		};
 		DF473CF90008CEB3E63226D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,6 +782,7 @@
 				C8F1BFA3209316D200AEFE72 /* TTSpark.m in Sources */,
 				C8990E4A209460F80095D96A /* BookReadView.m in Sources */,
 				C8F1BFB3209326DD00AEFE72 /* HomeCell.m in Sources */,
+				C8FAA40E20ABC2B7009C7872 /* BookRecordModel.m in Sources */,
 				C8B6480A209DA4A20071EA21 /* BookInfoViewModel.m in Sources */,
 				C817C34D209FED7D00A472B4 /* WebBookController.m in Sources */,
 				C8B64807209DA2300071EA21 /* BookInfoChapModel.m in Sources */,

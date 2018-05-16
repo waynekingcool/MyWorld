@@ -54,6 +54,7 @@
         [self.viewModel getModelWIthSection:1 WithRow:0];
         WebBookController *vc = [[WebBookController alloc]init];
         vc.webUrl = [self.viewModel getChapUrlWithSection:1 WithRow:0];
+        vc.recordTitle = self.title;
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -143,6 +144,8 @@
     
     WebBookController *vc = [[WebBookController alloc]init];
     vc.webUrl = [self.viewModel getChapUrlWithSection:indexPath.section WithRow:indexPath.row];
+    vc.recordTitle = self.title;
+    vc.isChoseChap = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

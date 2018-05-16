@@ -100,6 +100,12 @@
     return [NSURL URLWithString:model.chapUrl];
 }
 
+//获取章节名称
+- (NSString *)getChapTitleWithSection:(NSInteger)section WithRow:(NSInteger)row{
+    BookInfoChapModel *model = [self getModelWIthSection:section WithRow:row];
+    return model.chapTitle;
+}
+
 #pragma mark - Getter And Setter
 -(NSMutableArray *)lastArray{
     if (!_lastArray) {

@@ -29,4 +29,6 @@
 - (BookInfoChapModel *)getModelWIthSection:(NSInteger)section WithRow:(NSInteger)row;
 ///获取章节url
 - (NSURL *)getChapUrlWithSection:(NSInteger)section WithRow:(NSInteger)row;
+///获取章节名称
+- (NSString *)getChapTitleWithSection:(NSInteger)section WithRow:(NSInteger)row;
 @end

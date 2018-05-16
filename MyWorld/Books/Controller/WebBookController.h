@@ -11,5 +11,9 @@
 @interface WebBookController : BaseController
 ///连接
 @property(nonatomic,strong) NSURL *webUrl;
+///用来判断是否有缓存
+@property(nonatomic,copy) NSString *recordTitle;
+///选择某章节阅读
+@property(nonatomic, assign) BOOL isChoseChap;
 
 @end

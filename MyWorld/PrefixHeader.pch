@@ -67,6 +67,9 @@
 //数据库地址
 #define DBPath [NSTemporaryDirectory() stringByAppendingPathComponent:@"My.sqlite"]
 
+//阅读记录地址
+#define RecordPath NSTemporaryDirectory()
+
 //网络地址s
 //#define BaseUrl @"http://127.0.0.1:8000/"
 #define BaseUrl @"http://192.168.0.138:8000/"

@@ -8,6 +8,7 @@
 
 #import "WebBookController.h"
 #import "BookPageController.h"
+#import "WBDatabase.h"
 //viewModel
 #import "WebBookViewModel.h"
 
@@ -47,7 +48,27 @@
     [self initViewModel];
     [self bindData];
     
-    [self loadData];
+    //如果是选择某章节
+    if (self.isChoseChap) {
+        [self loadDataWithUrl:[self.webUrl absoluteString]];
+        return;
+    }
+    
+    //判断是否有记录
+    if ([self isHasRecord]) {
+        //有记录则从缓存中获取数据
+        if ([self getRecordData]) {
+            self.changePage = [self.viewModel.recordModel.recordPage integerValue];
+            [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.changePage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        }else{
+            //内容为空则从网络获取数据
+            [self loadData];
+        }
+    }else{
+        //无记录则从网络获取数据
+        [self loadData];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,6 +113,34 @@
 
 //根据链接跳转
 - (void)loadDataWithUrl:(NSString *)urlStr{
+    //加载前判断是否有缓存数据
+    if ([self isHasRecord]) {
+        //有记录则从缓存中获取数据
+        if ( [self getRecordDataWithUrl:urlStr]) {
+            //有内容
+            if (self.isPre) {
+                self.changePage = self.viewModel.model.pageCount - 1;
+                [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.changePage]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+            }else if(self.isNext){
+                self.changePage = 0;
+                self.currentPage = 0;
+                [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.changePage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+            }else{
+                [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+            }
+            self.isPre = false;
+            self.isNext = false;
+            WBLog(@"加载了缓存数据");
+            return ;
+        }else{
+            //无内容  从网络获取
+            [CCProgressHUD showMwssage:@"正在加载(*^__^*)" toView:self.view];
+            NSURL *url = [NSURL URLWithString:urlStr];
+            [self.viewModel.fetchContentCommad execute:url];
+            return;
+        }
+    }
+    
     [CCProgressHUD showMwssage:@"正在加载(*^__^*)" toView:self.view];
     NSURL *url = [NSURL URLWithString:urlStr];
     [self.viewModel.fetchContentCommad execute:url];
@@ -121,8 +170,63 @@
         }
         self.isPre = false;
         self.isNext = false;
+        //更新章节名称
+        self.title = model.chapTitle;
+        
+        //将数据缓存到数据库中
+        [self saveDataToDBWithModel:self.viewModel.model WithTitle:self.recordTitle];
     }];
 }
+
+#pragma mark - 判断是否有阅读记录
+- (BOOL)isHasRecord{
+    NSString *filePath = [RecordPath stringByAppendingPathComponent:self.recordTitle];
+    WBLog(@"缓存的路径:%@",filePath);
+    return [self.viewModel hasRecordWithPath:filePath];
+}
+
+
+
+#pragma mark - 获取缓存数据
+- (BOOL)getRecordData{
+    NSString *title = self.viewModel.recordModel.recordTitle;
+    NSString *chapTitle = self.viewModel.recordModel.recordChap;
+    WBLog(@"缓存数据----> 书名: %@,  章节名称: %@ 页码: %@",title,chapTitle,self.viewModel.recordModel.recordPage);
+    self.viewModel.model = [WBDatabase getDataWithTableName:title WithChapName:chapTitle];
+    if ([self isBlankString:self.viewModel.model.chapContent]) {
+        //无内容
+        return NO;
+    }else{
+        //有内容
+        return YES;
+    }
+}
+
+//根据url获取缓存数据
+- (BOOL)getRecordDataWithUrl:(NSString *)url{
+    NSString *title = self.viewModel.recordModel.recordTitle;
+    self.viewModel.model = [WBDatabase getDataWithUrl:url WithTableName:title];
+    if (!self.viewModel.model) {
+        //无内容
+        return NO;
+    }else{
+        //有内容
+        return YES;
+    }
+}
+
+#pragma mark - 将数据缓存到数据库中
+- (void)saveDataToDBWithModel:(BookChapModel *)model WithTitle:(NSString *)title{
+    //判断数据库中是否已经存在该数据
+    NSString *sql = [NSString stringWithFormat:@"SELECT COUNT(*) FROM %@ WHERE current = '%@'",title,model.current];
+    if ([WBDatabase isExistWithSQL:sql WithTableName:title]) {
+        WBLog(@"数据已存在,不进行缓存: %@",model.chapTitle);
+    }else{
+        [WBDatabase saveModel:model WithTitle:title];
+    }
+    
+}
+
 
 #pragma mark - UIPageViewController
 //往前翻
@@ -141,14 +245,14 @@
         return nil;
     }else{
         //下一页
-        self.changePage--;
+        self.changePage = self.changePage - 1;
     }
     return [self createPageControllerWithContent:self.changePage];
 }
 
 //往后翻
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
-    self.changePage = self.currentPage;
+//    self.changePage = self.currentPage;
     
     //最后一章的最后一页
     if (self.changePage == self.viewModel.model.pageCount-1 && [self.viewModel.model.next isEqualToString:@"最后一章"]) {
@@ -162,7 +266,7 @@
         [self loadDataWithUrl:self.viewModel.model.next];
         return nil;
     }else{
-        self.changePage++;
+        self.changePage = self.changePage + 1;
     }
     return [self createPageControllerWithContent:self.changePage];
 }
@@ -176,7 +280,24 @@
 - (BookPageController *)createPageControllerWithContent:(NSInteger)page{
     self.pageController = [[BookPageController alloc]init];
     self.pageController.content = [self.viewModel getContentWithPage:page];
+    
+    //保存阅读记录
+    [self.viewModel saveRecordWithTitle:self.recordTitle WithChapTitle:self.viewModel.model.chapTitle WithPage:[NSString stringWithFormat:@"%ld",self.changePage]];
+    
     return self.pageController;
+}
+
+- (BOOL) isBlankString:(NSString *)string {
+    if (string == nil || string == NULL) {
+        return YES;
+    }
+    if ([string isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    if ([[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - ResponseEvent
