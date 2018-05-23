@@ -132,7 +132,25 @@ static FMDatabase *single = nil;
     }
     [result close];
     return model;
-    
+}
+
++ (void)saveBookToShelf:(BookToShelfModel *)model{
+    FMDatabase *db = [WBDatabase shareDB];
+    [db open];
+    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS BookShelf (title text,picUrl text,recordTitle text,url text);"];
+    BOOL result = [db executeUpdate:sqlStr];
+    if (result) {
+        //将数据插入
+        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO BookShelf (title,picUrl,recordTitle,url) VALUES ('%@','%@','%@','%@');",model.title,model.picUrl,model.recordTitle,model.url];
+        BOOL result = [db executeUpdate:insertSql];
+        if (result) {
+            WBLog(@"插入成功:%@",model.title);
+        }else{
+            WBLog(@"插入失败:%@",model.title);
+        }
+    }else{
+        WBLog(@"表创建失败");
+    }
 }
 
 @end

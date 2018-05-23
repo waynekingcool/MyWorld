@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    WBLog(@"%@",DBPath);
     [self createUI];
     
     [self initViewModel];
@@ -51,16 +51,16 @@
     self.headView.startSubject = [RACSubject subject];
     [self.headView.startSubject subscribeNext:^(id x) {
         //开始阅读 从第一张开始阅读,如果已经有阅读记录,那么从记录开始阅读
-        [self.viewModel getModelWIthSection:1 WithRow:0];
+        [self_weak_.viewModel getModelWIthSection:1 WithRow:0];
         WebBookController *vc = [[WebBookController alloc]init];
-        vc.webUrl = [self.viewModel getChapUrlWithSection:1 WithRow:0];
-        vc.recordTitle = self.title;
-        [self.navigationController pushViewController:vc animated:YES];
+        vc.webUrl = [self_weak_.viewModel getChapUrlWithSection:1 WithRow:0];
+        vc.recordTitle = self_weak_.title;
+        [self_weak_.navigationController pushViewController:vc animated:YES];
     }];
     
     self.headView.putSubject = [RACSubject subject];
     [self.headView.putSubject subscribeNext:^(id x) {
-       //放入书架  也就是保存到本地数据库
+        [self_weak_ saveBookToShelf];
     }];
     
     self.headView.shelfSubject = [RACSubject subject];
@@ -103,6 +103,13 @@
 - (void)loadData{
     [CCProgressHUD showMwssage:@"正在加载,请稍等(*^__^*)" toView:self.view];
     [self.viewModel.fetchDataCommadn execute:self.path];
+}
+
+//将数据保存到书架
+- (void)saveBookToShelf{
+    //放入书架  也就是保存到本地数据库 需要保存的信息: 名称 封面地址 阅读记录 url
+    //有网络则获取最后更新时间 无网络则不显示
+    [self.viewModel saveBookToShelf];
 }
 
 #pragma mark - TableViewDelegate

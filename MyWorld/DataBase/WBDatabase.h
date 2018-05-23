@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <FMDB/FMDB.h>
 #import "BookChapModel.h"
+#import "BookToShelfModel.h"
 
 @interface WBDatabase : NSObject
 ///单例
@@ -49,4 +50,13 @@
  @return 返回BookChapModel
  */
 + (BookChapModel *)getDataWithUrl:(NSString *)url WithTableName:(NSString *)tableName;
+
+
+
+/**
+ 将数据保存到书架
+
+ @param model 书架model
+ */
++ (void)saveBookToShelf:(BookToShelfModel *)model;
 @end

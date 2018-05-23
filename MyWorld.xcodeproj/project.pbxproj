@@ -33,6 +33,7 @@
 		C8B64804209DA2200071EA21 /* BookInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B64803209DA2200071EA21 /* BookInfoModel.m */; };
 		C8B64807209DA2300071EA21 /* BookInfoChapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B64806209DA2300071EA21 /* BookInfoChapModel.m */; };
 		C8B6480A209DA4A20071EA21 /* BookInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B64809209DA4A20071EA21 /* BookInfoViewModel.m */; };
+		C8B705D420B565B0005060CA /* BookToShelfModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B705D320B565B0005060CA /* BookToShelfModel.m */; };
 		C8DED9A720A2E79500EF72B8 /* WBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DED9A620A2E79500EF72B8 /* WBDatabase.m */; };
 		C8E68BC920AA6C5C0024495D /* WBProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E68BC820AA6C5C0024495D /* WBProgressView.m */; };
 		C8F1BF542092F84D00AEFE72 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F1BF532092F84D00AEFE72 /* AppDelegate.m */; };
@@ -130,6 +131,8 @@
 		C8B64806209DA2300071EA21 /* BookInfoChapModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookInfoChapModel.m; sourceTree = "<group>"; };
 		C8B64808209DA4A20071EA21 /* BookInfoViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookInfoViewModel.h; sourceTree = "<group>"; };
 		C8B64809209DA4A20071EA21 /* BookInfoViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookInfoViewModel.m; sourceTree = "<group>"; };
+		C8B705D220B565B0005060CA /* BookToShelfModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookToShelfModel.h; sourceTree = "<group>"; };
+		C8B705D320B565B0005060CA /* BookToShelfModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookToShelfModel.m; sourceTree = "<group>"; };
 		C8DED9A520A2E79500EF72B8 /* WBDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBDatabase.h; sourceTree = "<group>"; };
 		C8DED9A620A2E79500EF72B8 /* WBDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBDatabase.m; sourceTree = "<group>"; };
 		C8E68BC720AA6C5C0024495D /* WBProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBProgressView.h; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 		C88DAA88209C0BE500AC9252 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C8B705D120B5659D005060CA /* BookShelf */,
 				C8FAA40B20ABC2A0009C7872 /* BookRecord */,
 				C8B647F8209D8FFD0071EA21 /* BookIndex */,
 				C8B647F7209D8FFD0071EA21 /* BookInfo */,
@@ -390,6 +394,15 @@
 				C88DAA9A209C3DB800AC9252 /* BookIndexModel.m */,
 			);
 			path = BookIndex;
+			sourceTree = "<group>";
+		};
+		C8B705D120B5659D005060CA /* BookShelf */ = {
+			isa = PBXGroup;
+			children = (
+				C8B705D220B565B0005060CA /* BookToShelfModel.h */,
+				C8B705D320B565B0005060CA /* BookToShelfModel.m */,
+			);
+			path = BookShelf;
 			sourceTree = "<group>";
 		};
 		C8DED9A420A2E74A00EF72B8 /* DataBase */ = {
@@ -782,6 +795,7 @@
 				C8F1BFA3209316D200AEFE72 /* TTSpark.m in Sources */,
 				C8990E4A209460F80095D96A /* BookReadView.m in Sources */,
 				C8F1BFB3209326DD00AEFE72 /* HomeCell.m in Sources */,
+				C8B705D420B565B0005060CA /* BookToShelfModel.m in Sources */,
 				C8FAA40E20ABC2B7009C7872 /* BookRecordModel.m in Sources */,
 				C8B6480A209DA4A20071EA21 /* BookInfoViewModel.m in Sources */,
 				C817C34D209FED7D00A472B4 /* WebBookController.m in Sources */,

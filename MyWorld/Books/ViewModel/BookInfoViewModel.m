@@ -7,10 +7,14 @@
 //
 
 #import "BookInfoViewModel.h"
+#import "BookToShelfModel.h"
+#import "WBDatabase.h"
 
 @interface BookInfoViewModel()
 
 @property(nonatomic,strong) WBNetWorkTool *tool;
+//recordModel
+@property(nonatomic,strong) BookRecordModel *recordModel;
 
 @end
 
@@ -104,6 +108,27 @@
 - (NSString *)getChapTitleWithSection:(NSInteger)section WithRow:(NSInteger)row{
     BookInfoChapModel *model = [self getModelWIthSection:section WithRow:row];
     return model.chapTitle;
+}
+
+-(void)saveBookToShelf{
+    //保存到书架model
+    BookToShelfModel *model = [[BookToShelfModel alloc]init];
+    model.title = self.model.title;
+    model.picUrl = self.model.coverUrl;
+    
+    self.recordModel = [NSKeyedUnarchiver unarchiveObjectWithFile:@""];
+    if (self.recordModel) {
+        //有阅读记录
+        model.url = @"";
+        model.recordTitle = self.recordModel.recordChap;
+    }else{
+        //从第一章开始
+        model.url = [[self getChapUrlWithSection:1 WithRow:0] absoluteString];
+        model.recordTitle = @"无阅读记录";
+    }
+    
+    //保存到数据库中 无表则建立表
+    [WBDatabase saveBookToShelf:model];
 }
 
 #pragma mark - Getter And Setter

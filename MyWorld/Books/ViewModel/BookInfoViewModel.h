@@ -11,6 +11,7 @@
 //model
 #import "BookInfoModel.h"
 #import "BookInfoChapModel.h"
+#import "BookRecordModel.h"
 
 @interface BookInfoViewModel : NSObject
 
@@ -31,4 +32,6 @@
 - (NSURL *)getChapUrlWithSection:(NSInteger)section WithRow:(NSInteger)row;
 ///获取章节名称
 - (NSString *)getChapTitleWithSection:(NSInteger)section WithRow:(NSInteger)row;
+///将书籍保存到书架
+- (void)saveBookToShelf;
 @end
