@@ -110,13 +110,14 @@
     return model.chapTitle;
 }
 
--(void)saveBookToShelf{
+-(NSString *)saveBookToShelf{
     //保存到书架model
     BookToShelfModel *model = [[BookToShelfModel alloc]init];
     model.title = self.model.title;
     model.picUrl = self.model.coverUrl;
     
-    self.recordModel = [NSKeyedUnarchiver unarchiveObjectWithFile:@""];
+    NSString *filePath = [RecordPath stringByAppendingPathComponent:model.title];
+    self.recordModel = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     if (self.recordModel) {
         //有阅读记录
         model.url = @"";
@@ -127,8 +128,15 @@
         model.recordTitle = @"无阅读记录";
     }
     
-    //保存到数据库中 无表则建立表
-    [WBDatabase saveBookToShelf:model];
+    //需要判断数据库中是否已经有该条记录
+        //保存到数据库中 无表则建立表
+    if ([WBDatabase saveBookToShelf:model]) {
+        return @"放入书架成功";
+    }else{
+        return @"放入书架失败";
+    }
+    
+
 }
 
 #pragma mark - Getter And Setter

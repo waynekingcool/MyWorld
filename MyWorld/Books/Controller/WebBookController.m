@@ -9,6 +9,7 @@
 #import "WebBookController.h"
 #import "BookPageController.h"
 #import "WBDatabase.h"
+#import "WebBookToolView.h"
 //viewModel
 #import "WebBookViewModel.h"
 
@@ -23,8 +24,11 @@
 
 @property(nonatomic, assign) BOOL isPre;
 @property(nonatomic, assign) BOOL isNext;
+@property(nonatomic, assign) BOOL loadRecord;
 
 @property(nonatomic, assign) BOOL isTap;    //是否显示导航条
+@property(nonatomic,strong) WebBookToolView *toolView;  //工具条
+
 @end
 
 @implementation WebBookController
@@ -42,6 +46,7 @@
     
     //不显示导航条
     self.isTap = NO;
+    self.loadRecord = NO;
     
     [self createUI];
     
@@ -57,10 +62,7 @@
     //判断是否有记录
     if ([self isHasRecord]) {
         //有记录则从缓存中获取数据
-        if ([self getRecordData]) {
-            self.changePage = [self.viewModel.recordModel.recordPage integerValue];
-            [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.changePage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-        }else{
+        if (![self getRecordData]) {
             //内容为空则从网络获取数据
             [self loadData];
         }
@@ -95,6 +97,8 @@
     
     [self setStatusBarBackgroundColor:[UIColor whiteColor]];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    [self.toolView removeFromSuperview];
 }
 
 - (void)createUI{
@@ -104,6 +108,10 @@
     //增加点击手势
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapSelf:)];
     [self.view addGestureRecognizer:tapGR];
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:self.toolView];
+    self.toolView.frame = CGRectMake(0, screenHeight, screenWidth, 50);
 }
 
 - (void)loadData{
@@ -158,6 +166,11 @@
         @strongify(self);
         WBLog(@"chapModel:%@",model);
         
+        //如果缓存存在
+        if (self.viewModel.recordModel) {
+            self.changePage = [self.viewModel.recordModel.recordPage integerValue];
+        }
+        
         if (self.isPre) {
             self.changePage = self.viewModel.model.pageCount - 1;
             [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.changePage]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
@@ -166,12 +179,17 @@
             self.currentPage = 0;
             [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.changePage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         }else{
-            [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+            [self.pageViewController setViewControllers:@[[self createPageControllerWithContent:self.changePage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         }
         self.isPre = false;
         self.isNext = false;
         //更新章节名称
         self.title = model.chapTitle;
+        
+        if (self.loadRecord) {
+            self.loadRecord = false;
+            return ;
+        }
         
         //将数据缓存到数据库中
         [self saveDataToDBWithModel:self.viewModel.model WithTitle:self.recordTitle];
@@ -191,6 +209,8 @@
 - (BOOL)getRecordData{
     NSString *title = self.viewModel.recordModel.recordTitle;
     NSString *chapTitle = self.viewModel.recordModel.recordChap;
+    //因为这里会导致viewModel.model发生变化,所以设置一个bool来控制
+    self.loadRecord = YES;
     WBLog(@"缓存数据----> 书名: %@,  章节名称: %@ 页码: %@",title,chapTitle,self.viewModel.recordModel.recordPage);
     self.viewModel.model = [WBDatabase getDataWithTableName:title WithChapName:chapTitle];
     if ([self isBlankString:self.viewModel.model.chapContent]) {
@@ -305,10 +325,27 @@
     self.isTap = !self.isTap;
     if (self.isTap) {
         [self setStatusBarBackgroundColor:ProtectEyeColor];
+
         [self.navigationController setNavigationBarHidden:YES animated:YES];
+        
+        //隐藏
+        [UIView animateWithDuration:0.5 animations:^{
+            self.toolView.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+        } completion:^(BOOL finished) {
+
+        }];
+
     }else{
         [self setStatusBarBackgroundColor:[UIColor whiteColor]];
+
         [self.navigationController setNavigationBarHidden:NO animated:YES];
+        
+        //显示
+        [UIView animateWithDuration:0.5 animations:^{
+            self.toolView.frame = CGRectMake(0, screenHeight-50, screenWidth, 50);
+        } completion:^(BOOL finished) {
+
+        }];
     }
 }
 
@@ -328,5 +365,12 @@
         _pageViewController.dataSource = self;
     }
     return _pageViewController;
+}
+
+-(WebBookToolView *)toolView{
+    if (!_toolView) {
+        _toolView = [[WebBookToolView alloc]init];
+    }
+    return _toolView;
 }
 @end

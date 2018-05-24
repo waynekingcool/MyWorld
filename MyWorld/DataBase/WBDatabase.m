@@ -7,6 +7,7 @@
 //
 
 #import "WBDatabase.h"
+#import "BookRecordModel.h"
 
 @implementation WBDatabase
 static FMDatabase *single = nil;
@@ -24,7 +25,13 @@ static FMDatabase *single = nil;
 + (BOOL)createTableWithTitle:(NSString *)title{
     FMDatabase *db = [WBDatabase shareDB];
     if ([db open]) {
-        NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (chapTitle text,chapContent text,pre text,next text,chapId INTEGER,current text);",title];
+        NSString *sqlStr = @"";
+        if ([title isEqualToString:@"BookShelf"]) {
+            sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS BookShelf (title text,picUrl text,recordTitle text,url text);"];
+        }else{
+            sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (chapTitle text,chapContent text,pre text,next text,chapId INTEGER,current text);",title];
+        }
+        
         BOOL result = [db executeUpdate:sqlStr];
         if (result) {
 //            WBLog(@"表: %@ 创建成功",title);
@@ -65,6 +72,7 @@ static FMDatabase *single = nil;
 //根据条件进行查询,判断是否存在
 + (BOOL)isExistWithSQL:(NSString *)sql WithTableName:(NSString *)name{
     FMDatabase *db = [WBDatabase shareDB];
+    [db open];
     //检查表是否存在
     BOOL isExist = [WBDatabase createTableWithTitle:name];
     if (!isExist) {
@@ -77,7 +85,7 @@ static FMDatabase *single = nil;
     if ([result next]) {
         count = [result intForColumnIndex:0];
     }
-    
+    [db close];
     return count == 0 ? false : true;
     
 }
@@ -134,23 +142,86 @@ static FMDatabase *single = nil;
     return model;
 }
 
-+ (void)saveBookToShelf:(BookToShelfModel *)model{
+//将书添加到书架
++ (BOOL)saveBookToShelf:(BookToShelfModel *)model{
     FMDatabase *db = [WBDatabase shareDB];
     [db open];
     NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS BookShelf (title text,picUrl text,recordTitle text,url text);"];
     BOOL result = [db executeUpdate:sqlStr];
     if (result) {
-        //将数据插入
-        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO BookShelf (title,picUrl,recordTitle,url) VALUES ('%@','%@','%@','%@');",model.title,model.picUrl,model.recordTitle,model.url];
-        BOOL result = [db executeUpdate:insertSql];
-        if (result) {
-            WBLog(@"插入成功:%@",model.title);
-        }else{
-            WBLog(@"插入失败:%@",model.title);
+        
+        //检测是否已经有数据
+        NSString *querySql = [NSString stringWithFormat:@"SELECT COUNT(*) FROM BookShelf WHERE title = '%@'",model.title];
+        FMResultSet *setResult = [db executeQuery:querySql];
+        //总数
+        int count = 0;
+        if ([setResult next]) {
+            count = [setResult intForColumnIndex:0];
         }
+        
+        if (count == 0) {
+            //不存在 则插入
+            //将数据插入
+            NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO BookShelf (title,picUrl,recordTitle,url) VALUES ('%@','%@','%@','%@');",model.title,model.picUrl,model.recordTitle,model.url];
+            BOOL result = [db executeUpdate:insertSql];
+            [db close];
+            if (result) {
+                WBLog(@"插入成功:%@",model.title);
+                return true;
+            }else{
+                WBLog(@"插入失败:%@",model.title);
+                return false;
+            }
+        }else{
+            //存在
+            return false;
+        }
+        
     }else{
         WBLog(@"表创建失败");
+        return false;
     }
+}
+
+//获取书架数据
++ (NSArray *)loadBookToShelf{
+    FMDatabase *db = [WBDatabase shareDB];
+    WBLog(@"%@",DBPath);
+    [db open];
+    //判断表是否存在
+    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS BookShelf (title text,picUrl text,recordTitle text,url text);"];
+    BOOL result = [db executeUpdate:sqlStr];
+    if (result) {
+//        WBLog(@"表BookShelf不已创建");
+    }else{
+        WBLog(@"表BookShelf创建失败");
+    }
+    
+    NSString *sqlStr2 = @"SELECT * FROM BookShelf";
+    FMResultSet *set = [db executeQuery:sqlStr2];
+    NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+    while ([set next]) {
+        BookToShelfModel *model = [[BookToShelfModel alloc]init];
+        model.title = [set stringForColumn:@"title"];
+        model.picUrl = [set stringForColumn:@"picUrl"];
+        
+        //获取实时记录
+        NSString *filePath = [RecordPath stringByAppendingPathComponent:model.title];
+        BookRecordModel *recordModel = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+        if (recordModel) {
+            //有阅读记录
+            model.recordTitle = recordModel.recordChap;
+        }else{
+            //从第一章开始
+            model.recordTitle = @"无阅读记录";
+        }
+        
+        model.url = [set stringForColumn:@"url"];
+        [dataArray addObject:model];
+    }
+    [set close];
+    return [dataArray copy];
+
 }
 
 @end

@@ -10,6 +10,8 @@
 		C817C34D209FED7D00A472B4 /* WebBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = C817C34C209FED7D00A472B4 /* WebBookController.m */; };
 		C817C350209FED9E00A472B4 /* WebBookViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C817C34F209FED9E00A472B4 /* WebBookViewModel.m */; };
 		C855B67B2099A6E800F7A73E /* 紫川.txt in Resources */ = {isa = PBXBuildFile; fileRef = C855B67A2099A6E700F7A73E /* 紫川.txt */; };
+		C876A9A420B6613F00895C2C /* BookShelfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C876A9A320B6613F00895C2C /* BookShelfCell.m */; };
+		C876A9A720B6677700895C2C /* WebBookToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = C876A9A620B6677700895C2C /* WebBookToolView.m */; };
 		C88DAA84209C06D600AC9252 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DAA82209C06D500AC9252 /* TabBarController.m */; };
 		C88DAA8F209C102A00AC9252 /* BookIndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DAA8E209C102A00AC9252 /* BookIndexController.m */; };
 		C88DAA92209C10C300AC9252 /* BookIndexImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DAA91209C10C300AC9252 /* BookIndexImgCell.m */; };
@@ -85,6 +87,10 @@
 		C817C34E209FED9E00A472B4 /* WebBookViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebBookViewModel.h; sourceTree = "<group>"; };
 		C817C34F209FED9E00A472B4 /* WebBookViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebBookViewModel.m; sourceTree = "<group>"; };
 		C855B67A2099A6E700F7A73E /* 紫川.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "紫川.txt"; sourceTree = "<group>"; };
+		C876A9A220B6613F00895C2C /* BookShelfCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookShelfCell.h; sourceTree = "<group>"; };
+		C876A9A320B6613F00895C2C /* BookShelfCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookShelfCell.m; sourceTree = "<group>"; };
+		C876A9A520B6677700895C2C /* WebBookToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebBookToolView.h; sourceTree = "<group>"; };
+		C876A9A620B6677700895C2C /* WebBookToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebBookToolView.m; sourceTree = "<group>"; };
 		C88DAA82209C06D500AC9252 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		C88DAA83209C06D500AC9252 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		C88DAA8D209C102A00AC9252 /* BookIndexController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookIndexController.h; sourceTree = "<group>"; };
@@ -346,6 +352,8 @@
 				C89A7F6920A19A5E0057B31A /* BookChapListCell.m */,
 				C8E68BC720AA6C5C0024495D /* WBProgressView.h */,
 				C8E68BC820AA6C5C0024495D /* WBProgressView.m */,
+				C876A9A220B6613F00895C2C /* BookShelfCell.h */,
+				C876A9A320B6613F00895C2C /* BookShelfCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -372,6 +380,8 @@
 				C8B647FD209D90400071EA21 /* BookInfoSectionView.m */,
 				C8B647FF209D96E40071EA21 /* BookInfoTableHeadView.h */,
 				C8B64800209D96E40071EA21 /* BookInfoTableHeadView.m */,
+				C876A9A520B6677700895C2C /* WebBookToolView.h */,
+				C876A9A620B6677700895C2C /* WebBookToolView.m */,
 			);
 			path = BookInfo;
 			sourceTree = "<group>";
@@ -815,6 +825,7 @@
 				C817C350209FED9E00A472B4 /* WebBookViewModel.m in Sources */,
 				C8B647F4209D88570071EA21 /* BookInfoController.m in Sources */,
 				C8E68BC920AA6C5C0024495D /* WBProgressView.m in Sources */,
+				C876A9A720B6677700895C2C /* WebBookToolView.m in Sources */,
 				C88DAA8F209C102A00AC9252 /* BookIndexController.m in Sources */,
 				C8B64801209D96E40071EA21 /* BookInfoTableHeadView.m in Sources */,
 				C8B64804209DA2200071EA21 /* BookInfoModel.m in Sources */,
@@ -837,6 +848,7 @@
 				C8F1BF9F209316D200AEFE72 /* UIView+TTKit.m in Sources */,
 				C8990E47209459660095D96A /* BookPageController.m in Sources */,
 				C89A7F6420A195160057B31A /* BookShelfController.m in Sources */,
+				C876A9A420B6613F00895C2C /* BookShelfCell.m in Sources */,
 				C8F1BF892093169C00AEFE72 /* CCProgressHUD.m in Sources */,
 				C8F1BFA1209316D200AEFE72 /* TTFaveIcon.m in Sources */,
 				C88DAA9E209C3E8000AC9252 /* BookIndexViewModel.m in Sources */,

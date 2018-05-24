@@ -33,5 +33,5 @@
 ///获取章节名称
 - (NSString *)getChapTitleWithSection:(NSInteger)section WithRow:(NSInteger)row;
 ///将书籍保存到书架
-- (void)saveBookToShelf;
+- (NSString *)saveBookToShelf;
 @end

@@ -8,13 +8,18 @@
 
 #import "BookShelfController.h"
 #import "BookChapListController.h"
+#import "WBDatabase.h"
+#import "WebBookController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 //cell
 #import "BookIndexNoImgCell.h"
+#import "BookShelfCell.h"
 
 @interface BookShelfController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) WBNetWorkTool *tool;
+@property(nonatomic,strong) NSArray *dataArray;
 
 @end
 
@@ -24,6 +29,7 @@
     [super viewDidLoad];
     
     [self createUI];
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,9 +39,23 @@
 - (void)createUI{
     self.leftButton.hidden = YES;
     
-    self.tableView = [WBUtil createTableView:self SeparatorStyle:UITableViewCellSeparatorStyleNone rowHeight:0 CellClass:[BookIndexNoImgCell class]];
+    self.tableView = [WBUtil createTableView:self SeparatorStyle:UITableViewCellSeparatorStyleNone rowHeight:120 CellClass:[BookShelfCell class]];
     [self.view addSubview:self.tableView];
     self.tableView.frame = CGRectMake(0, 0, screenWidth, screenHeight-64-49);
+    
+    @weakify(self);
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self_weak_ loadData];
+        [self_weak_.tableView.mj_header endRefreshing];
+    }];
+}
+
+- (void)loadData{
+    //从本地加载数据
+    self.dataArray = [WBDatabase loadBookToShelf];
+    if (self.dataArray.count > 0) {
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - TableViewDelegate
@@ -44,25 +64,31 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BookIndexNoImgCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    BookToShelfModel *model = self.dataArray[indexPath.row];
+    BookShelfCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.model = model;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    BookChapListController *vc = [[BookChapListController alloc]init];
+    BookToShelfModel *model = self.dataArray[indexPath.row];
+    WebBookController *vc = [[WebBookController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
+    vc.recordTitle = model.title;
+    vc.webUrl = [NSURL URLWithString:model.url];
     [self.navigationController pushViewController:vc animated:YES];
+    
+//    BookChapListController *vc = [[BookChapListController alloc]init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
-}
 
 #pragma mark - Getter And Setter
 -(WBNetWorkTool *)tool{

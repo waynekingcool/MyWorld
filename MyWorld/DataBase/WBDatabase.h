@@ -58,5 +58,14 @@
 
  @param model 书架model
  */
-+ (void)saveBookToShelf:(BookToShelfModel *)model;
++ (BOOL)saveBookToShelf:(BookToShelfModel *)model;
+
+
+/**
+ 获取书架数据
+
+ @return 书架数据
+ */
++ (NSArray *)loadBookToShelf;
+
 @end

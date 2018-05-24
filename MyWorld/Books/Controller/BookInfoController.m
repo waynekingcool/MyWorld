@@ -109,7 +109,8 @@
 - (void)saveBookToShelf{
     //放入书架  也就是保存到本地数据库 需要保存的信息: 名称 封面地址 阅读记录 url
     //有网络则获取最后更新时间 无网络则不显示
-    [self.viewModel saveBookToShelf];
+    NSString *str =  [self.viewModel saveBookToShelf];
+    [CCProgressHUD showMessageInAFlashWithMessage:str];
 }
 
 #pragma mark - TableViewDelegate
