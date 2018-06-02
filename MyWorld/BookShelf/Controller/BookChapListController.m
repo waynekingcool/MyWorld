@@ -70,7 +70,7 @@
 - (void)loadData{
     //51_51880/
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-    [dic setValue:@"51_51880/" forKey:@"path"];
+    [dic setValue:self.bookPath forKey:@"path"];
     
     [self.tool getDataWithAct:@"bookInfo" params:dic start:^{
         [CCProgressHUD showMwssage:@"正在加载所有章节(*^__^*)" toView:self.view];

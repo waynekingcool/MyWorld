@@ -9,5 +9,7 @@
 #import "BaseController.h"
 
 @interface BookChapListController : BaseController
+///书籍路径
+@property(nonatomic,copy) NSString *bookPath;
 
 @end

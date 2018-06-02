@@ -10,6 +10,7 @@
 #import "BookPageController.h"
 #import "WBDatabase.h"
 #import "WebBookToolView.h"
+#import "BookChapListController.h"
 //viewModel
 #import "WebBookViewModel.h"
 
@@ -111,6 +112,17 @@
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:self.toolView];
+    self.toolView.downSubject = [RACSubject subject];
+    //预缓存章节
+    @weakify(self);
+    [self.toolView.downSubject subscribeNext:^(id x) {
+        //取书籍path
+        NSArray *tempArray = [[self_weak_.webUrl absoluteString] componentsSeparatedByString:@"/"];
+        BookChapListController *vc = [[BookChapListController alloc]init];
+        NSString *path = tempArray[3];
+        vc.bookPath = [NSString stringWithFormat:@"%@/",path];
+        [self_weak_.navigationController pushViewController:vc animated:YES];
+    }];
     self.toolView.frame = CGRectMake(0, screenHeight, screenWidth, 50);
 }
 

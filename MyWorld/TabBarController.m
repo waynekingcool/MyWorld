@@ -10,6 +10,7 @@
 #import "HomeViewController.h"
 #import "BookIndexController.h"
 #import "BookShelfController.h"
+#import "TestViewController.h"
 
 @interface TabBarController ()
 
@@ -38,7 +39,9 @@
     
     BookShelfController *shelf = [[BookShelfController alloc]init];
     [self setUpOneChildVcWithVc:shelf Image:@"Btn-sort-pre" selectedImage:@"Btn-sort" title:@"书架"];
-
+    
+    TestViewController *test = [[TestViewController alloc]init];
+    [self setUpOneChildVcWithVc:test Image:@"Btn-sort-pre" selectedImage:@"Btn-sort" title:@"测试"];
 }
 
 /**

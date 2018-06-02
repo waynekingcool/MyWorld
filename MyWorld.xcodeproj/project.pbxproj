@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C817C34D209FED7D00A472B4 /* WebBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = C817C34C209FED7D00A472B4 /* WebBookController.m */; };
 		C817C350209FED9E00A472B4 /* WebBookViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C817C34F209FED9E00A472B4 /* WebBookViewModel.m */; };
+		C835762E20C12A66009DD1D6 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C835762C20C12A66009DD1D6 /* FBShimmeringLayer.m */; };
+		C835762F20C12A66009DD1D6 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = C835762D20C12A66009DD1D6 /* FBShimmeringView.m */; };
 		C855B67B2099A6E800F7A73E /* 紫川.txt in Resources */ = {isa = PBXBuildFile; fileRef = C855B67A2099A6E700F7A73E /* 紫川.txt */; };
 		C876A9A420B6613F00895C2C /* BookShelfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C876A9A320B6613F00895C2C /* BookShelfCell.m */; };
 		C876A9A720B6677700895C2C /* WebBookToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = C876A9A620B6677700895C2C /* WebBookToolView.m */; };
@@ -19,6 +21,8 @@
 		C88DAA98209C378C00AC9252 /* BookIndexSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DAA97209C378C00AC9252 /* BookIndexSectionView.m */; };
 		C88DAA9B209C3DB800AC9252 /* BookIndexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DAA9A209C3DB800AC9252 /* BookIndexModel.m */; };
 		C88DAA9E209C3E8000AC9252 /* BookIndexViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DAA9D209C3E8000AC9252 /* BookIndexViewModel.m */; };
+		C89630F920C0EA3700894AA4 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89630F820C0EA3700894AA4 /* TestViewController.m */; };
+		C89630FD20C0EB5C00894AA4 /* WBHeaderRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C89630FC20C0EB5C00894AA4 /* WBHeaderRefresh.m */; };
 		C8990E3A2094042A0095D96A /* BookController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8990E392094042A0095D96A /* BookController.m */; };
 		C8990E3E209406410095D96A /* BookViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8990E3D209406410095D96A /* BookViewModel.m */; };
 		C8990E412094067A0095D96A /* BookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8990E402094067A0095D96A /* BookModel.m */; };
@@ -86,6 +90,12 @@
 		C817C34C209FED7D00A472B4 /* WebBookController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebBookController.m; sourceTree = "<group>"; };
 		C817C34E209FED9E00A472B4 /* WebBookViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebBookViewModel.h; sourceTree = "<group>"; };
 		C817C34F209FED9E00A472B4 /* WebBookViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebBookViewModel.m; sourceTree = "<group>"; };
+		C835762820C12A66009DD1D6 /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
+		C835762920C12A66009DD1D6 /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
+		C835762A20C12A66009DD1D6 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
+		C835762B20C12A66009DD1D6 /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
+		C835762C20C12A66009DD1D6 /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
+		C835762D20C12A66009DD1D6 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
 		C855B67A2099A6E700F7A73E /* 紫川.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "紫川.txt"; sourceTree = "<group>"; };
 		C876A9A220B6613F00895C2C /* BookShelfCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookShelfCell.h; sourceTree = "<group>"; };
 		C876A9A320B6613F00895C2C /* BookShelfCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookShelfCell.m; sourceTree = "<group>"; };
@@ -105,6 +115,10 @@
 		C88DAA9A209C3DB800AC9252 /* BookIndexModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookIndexModel.m; sourceTree = "<group>"; };
 		C88DAA9C209C3E8000AC9252 /* BookIndexViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookIndexViewModel.h; sourceTree = "<group>"; };
 		C88DAA9D209C3E8000AC9252 /* BookIndexViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookIndexViewModel.m; sourceTree = "<group>"; };
+		C89630F720C0EA3700894AA4 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		C89630F820C0EA3700894AA4 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		C89630FB20C0EB5C00894AA4 /* WBHeaderRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBHeaderRefresh.h; sourceTree = "<group>"; };
+		C89630FC20C0EB5C00894AA4 /* WBHeaderRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBHeaderRefresh.m; sourceTree = "<group>"; };
 		C8990E382094042A0095D96A /* BookController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookController.h; sourceTree = "<group>"; };
 		C8990E392094042A0095D96A /* BookController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookController.m; sourceTree = "<group>"; };
 		C8990E3C209406410095D96A /* BookViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookViewModel.h; sourceTree = "<group>"; };
@@ -232,6 +246,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C835762720C12A66009DD1D6 /* FBShimmering */ = {
+			isa = PBXGroup;
+			children = (
+				C835762820C12A66009DD1D6 /* FBShimmering.h */,
+				C835762920C12A66009DD1D6 /* FBShimmeringLayer.h */,
+				C835762A20C12A66009DD1D6 /* FBShimmering-Prefix.pch */,
+				C835762B20C12A66009DD1D6 /* FBShimmeringView.h */,
+				C835762C20C12A66009DD1D6 /* FBShimmeringLayer.m */,
+				C835762D20C12A66009DD1D6 /* FBShimmeringView.m */,
+			);
+			path = FBShimmering;
+			sourceTree = "<group>";
+		};
 		C88DAA85209C0BE500AC9252 /* Books */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +314,15 @@
 				C8B647F5209D8FC70071EA21 /* BookIndex */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C89630FA20C0EB3700894AA4 /* WBRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				C89630FB20C0EB5C00894AA4 /* WBHeaderRefresh.h */,
+				C89630FC20C0EB5C00894AA4 /* WBHeaderRefresh.m */,
+			);
+			path = WBRefresh;
 			sourceTree = "<group>";
 		};
 		C8990E37209404130095D96A /* BookController */ = {
@@ -458,6 +494,8 @@
 				C88DAA82209C06D500AC9252 /* TabBarController.m */,
 				C8F1BF682093158500AEFE72 /* BaseController.h */,
 				C8F1BF692093158500AEFE72 /* BaseController.m */,
+				C89630F720C0EA3700894AA4 /* TestViewController.h */,
+				C89630F820C0EA3700894AA4 /* TestViewController.m */,
 				C8F1BF5B2092F84F00AEFE72 /* Assets.xcassets */,
 				C8F1BF5D2092F84F00AEFE72 /* LaunchScreen.storyboard */,
 				C8F1BF602092F84F00AEFE72 /* Info.plist */,
@@ -469,6 +507,8 @@
 		C8F1BF6C2093162900AEFE72 /* Venders */ = {
 			isa = PBXGroup;
 			children = (
+				C835762720C12A66009DD1D6 /* FBShimmering */,
+				C89630FA20C0EB3700894AA4 /* WBRefresh */,
 				C8F1BF8F209316D100AEFE72 /* FaveButton */,
 				C8F1BF8B209316B400AEFE72 /* NetWorkTool */,
 				C8F1BF842093169C00AEFE72 /* CCHUD */,
@@ -810,6 +850,7 @@
 				C8B6480A209DA4A20071EA21 /* BookInfoViewModel.m in Sources */,
 				C817C34D209FED7D00A472B4 /* WebBookController.m in Sources */,
 				C8B64807209DA2300071EA21 /* BookInfoChapModel.m in Sources */,
+				C835762F20C12A66009DD1D6 /* FBShimmeringView.m in Sources */,
 				C8F1BF9E209316D200AEFE72 /* UIView+TTAutoLayout.m in Sources */,
 				C89A7F6A20A19A5E0057B31A /* BookChapListCell.m in Sources */,
 				C8F1BF812093163C00AEFE72 /* UILabel+Copy.m in Sources */,
@@ -824,6 +865,7 @@
 				C88DAA92209C10C300AC9252 /* BookIndexImgCell.m in Sources */,
 				C817C350209FED9E00A472B4 /* WebBookViewModel.m in Sources */,
 				C8B647F4209D88570071EA21 /* BookInfoController.m in Sources */,
+				C89630F920C0EA3700894AA4 /* TestViewController.m in Sources */,
 				C8E68BC920AA6C5C0024495D /* WBProgressView.m in Sources */,
 				C876A9A720B6677700895C2C /* WebBookToolView.m in Sources */,
 				C88DAA8F209C102A00AC9252 /* BookIndexController.m in Sources */,
@@ -831,6 +873,7 @@
 				C8B64804209DA2200071EA21 /* BookInfoModel.m in Sources */,
 				C8990E44209406AF0095D96A /* BookChapModel.m in Sources */,
 				C8F1BF7E2093163C00AEFE72 /* WBUtil.m in Sources */,
+				C89630FD20C0EB5C00894AA4 /* WBHeaderRefresh.m in Sources */,
 				C8F1BF7F2093163C00AEFE72 /* WBUtil+WBTableViewCell.m in Sources */,
 				C8F1BF8E209316B400AEFE72 /* WBNetWorkTool.m in Sources */,
 				C8F1BF8A2093169C00AEFE72 /* UIColor+UIColorExt.m in Sources */,
@@ -844,6 +887,7 @@
 				C8DED9A720A2E79500EF72B8 /* WBDatabase.m in Sources */,
 				C8990E3A2094042A0095D96A /* BookController.m in Sources */,
 				C8990E412094067A0095D96A /* BookModel.m in Sources */,
+				C835762E20C12A66009DD1D6 /* FBShimmeringLayer.m in Sources */,
 				C8F1BFB0209326AC00AEFE72 /* HomeViewController.m in Sources */,
 				C8F1BF9F209316D200AEFE72 /* UIView+TTKit.m in Sources */,
 				C8990E47209459660095D96A /* BookPageController.m in Sources */,
