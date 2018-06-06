@@ -32,6 +32,7 @@
 		C89A7F6420A195160057B31A /* BookShelfController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89A7F6320A195160057B31A /* BookShelfController.m */; };
 		C89A7F6720A19A360057B31A /* BookChapListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89A7F6620A19A360057B31A /* BookChapListController.m */; };
 		C89A7F6A20A19A5E0057B31A /* BookChapListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C89A7F6920A19A5E0057B31A /* BookChapListCell.m */; };
+		C8AD82F820C7702A002CDAD0 /* WBDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AD82F720C7702A002CDAD0 /* WBDownloadItem.m */; };
 		C8B647F4209D88570071EA21 /* BookInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B647F3209D88570071EA21 /* BookInfoController.m */; };
 		C8B647FB209D90220071EA21 /* BookInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B647FA209D90220071EA21 /* BookInfoCell.m */; };
 		C8B647FE209D90400071EA21 /* BookInfoSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B647FD209D90400071EA21 /* BookInfoSectionView.m */; };
@@ -80,6 +81,7 @@
 		C8F1BFCA209328F700AEFE72 /* pikaqiu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BFC7209328F600AEFE72 /* pikaqiu.jpg */; };
 		C8F1BFCB209328F700AEFE72 /* nizhuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BFC8209328F600AEFE72 /* nizhuan.jpg */; };
 		C8F1BFCC209328F700AEFE72 /* huoyan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8F1BFC9209328F600AEFE72 /* huoyan.jpg */; };
+		C8F49AFF20C23F6F001F1449 /* WBDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F49AFE20C23F6F001F1449 /* WBDownloader.m */; };
 		C8FAA40E20ABC2B7009C7872 /* BookRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FAA40D20ABC2B7009C7872 /* BookRecordModel.m */; };
 		FF29CEE86DCCFF4C4718C351 /* Pods_MyWorld.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4589D3766A32AC233E80BD8 /* Pods_MyWorld.framework */; };
 /* End PBXBuildFile section */
@@ -137,6 +139,8 @@
 		C89A7F6620A19A360057B31A /* BookChapListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookChapListController.m; sourceTree = "<group>"; };
 		C89A7F6820A19A5E0057B31A /* BookChapListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookChapListCell.h; sourceTree = "<group>"; };
 		C89A7F6920A19A5E0057B31A /* BookChapListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookChapListCell.m; sourceTree = "<group>"; };
+		C8AD82F620C7702A002CDAD0 /* WBDownloadItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBDownloadItem.h; sourceTree = "<group>"; };
+		C8AD82F720C7702A002CDAD0 /* WBDownloadItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBDownloadItem.m; sourceTree = "<group>"; };
 		C8B647F2209D88570071EA21 /* BookInfoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookInfoController.h; sourceTree = "<group>"; };
 		C8B647F3209D88570071EA21 /* BookInfoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookInfoController.m; sourceTree = "<group>"; };
 		C8B647F9209D90220071EA21 /* BookInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookInfoCell.h; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 		C8F1BFC7209328F600AEFE72 /* pikaqiu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pikaqiu.jpg; sourceTree = "<group>"; };
 		C8F1BFC8209328F600AEFE72 /* nizhuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nizhuan.jpg; sourceTree = "<group>"; };
 		C8F1BFC9209328F600AEFE72 /* huoyan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = huoyan.jpg; sourceTree = "<group>"; };
+		C8F49AFD20C23F6F001F1449 /* WBDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBDownloader.h; sourceTree = "<group>"; };
+		C8F49AFE20C23F6F001F1449 /* WBDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBDownloader.m; sourceTree = "<group>"; };
 		C8FAA40C20ABC2B7009C7872 /* BookRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookRecordModel.h; sourceTree = "<group>"; };
 		C8FAA40D20ABC2B7009C7872 /* BookRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookRecordModel.m; sourceTree = "<group>"; };
 		D4589D3766A32AC233E80BD8 /* Pods_MyWorld.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWorld.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -507,6 +513,7 @@
 		C8F1BF6C2093162900AEFE72 /* Venders */ = {
 			isa = PBXGroup;
 			children = (
+				C8F49AFC20C23F38001F1449 /* WBDownloader */,
 				C835762720C12A66009DD1D6 /* FBShimmering */,
 				C89630FA20C0EB3700894AA4 /* WBRefresh */,
 				C8F1BF8F209316D100AEFE72 /* FaveButton */,
@@ -658,6 +665,17 @@
 				C8F1BFBD209328E600AEFE72 /* 10.jpg */,
 			);
 			path = picture;
+			sourceTree = "<group>";
+		};
+		C8F49AFC20C23F38001F1449 /* WBDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				C8F49AFD20C23F6F001F1449 /* WBDownloader.h */,
+				C8F49AFE20C23F6F001F1449 /* WBDownloader.m */,
+				C8AD82F620C7702A002CDAD0 /* WBDownloadItem.h */,
+				C8AD82F720C7702A002CDAD0 /* WBDownloadItem.m */,
+			);
+			path = WBDownloader;
 			sourceTree = "<group>";
 		};
 		C8FAA40B20ABC2A0009C7872 /* BookRecord */ = {
@@ -846,11 +864,13 @@
 				C8990E4A209460F80095D96A /* BookReadView.m in Sources */,
 				C8F1BFB3209326DD00AEFE72 /* HomeCell.m in Sources */,
 				C8B705D420B565B0005060CA /* BookToShelfModel.m in Sources */,
+				C8AD82F820C7702A002CDAD0 /* WBDownloadItem.m in Sources */,
 				C8FAA40E20ABC2B7009C7872 /* BookRecordModel.m in Sources */,
 				C8B6480A209DA4A20071EA21 /* BookInfoViewModel.m in Sources */,
 				C817C34D209FED7D00A472B4 /* WebBookController.m in Sources */,
 				C8B64807209DA2300071EA21 /* BookInfoChapModel.m in Sources */,
 				C835762F20C12A66009DD1D6 /* FBShimmeringView.m in Sources */,
+				C8F49AFF20C23F6F001F1449 /* WBDownloader.m in Sources */,
 				C8F1BF9E209316D200AEFE72 /* UIView+TTAutoLayout.m in Sources */,
 				C89A7F6A20A19A5E0057B31A /* BookChapListCell.m in Sources */,
 				C8F1BF812093163C00AEFE72 /* UILabel+Copy.m in Sources */,
