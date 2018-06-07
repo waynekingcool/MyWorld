@@ -33,6 +33,7 @@
 		C89A7F6720A19A360057B31A /* BookChapListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89A7F6620A19A360057B31A /* BookChapListController.m */; };
 		C89A7F6A20A19A5E0057B31A /* BookChapListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C89A7F6920A19A5E0057B31A /* BookChapListCell.m */; };
 		C8AD82F820C7702A002CDAD0 /* WBDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AD82F720C7702A002CDAD0 /* WBDownloadItem.m */; };
+		C8AD82FB20C7D045002CDAD0 /* WBDownloadResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AD82FA20C7D045002CDAD0 /* WBDownloadResponseSerializer.m */; };
 		C8B647F4209D88570071EA21 /* BookInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B647F3209D88570071EA21 /* BookInfoController.m */; };
 		C8B647FB209D90220071EA21 /* BookInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B647FA209D90220071EA21 /* BookInfoCell.m */; };
 		C8B647FE209D90400071EA21 /* BookInfoSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B647FD209D90400071EA21 /* BookInfoSectionView.m */; };
@@ -141,6 +142,8 @@
 		C89A7F6920A19A5E0057B31A /* BookChapListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookChapListCell.m; sourceTree = "<group>"; };
 		C8AD82F620C7702A002CDAD0 /* WBDownloadItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBDownloadItem.h; sourceTree = "<group>"; };
 		C8AD82F720C7702A002CDAD0 /* WBDownloadItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBDownloadItem.m; sourceTree = "<group>"; };
+		C8AD82F920C7D045002CDAD0 /* WBDownloadResponseSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBDownloadResponseSerializer.h; sourceTree = "<group>"; };
+		C8AD82FA20C7D045002CDAD0 /* WBDownloadResponseSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBDownloadResponseSerializer.m; sourceTree = "<group>"; };
 		C8B647F2209D88570071EA21 /* BookInfoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookInfoController.h; sourceTree = "<group>"; };
 		C8B647F3209D88570071EA21 /* BookInfoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookInfoController.m; sourceTree = "<group>"; };
 		C8B647F9209D90220071EA21 /* BookInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookInfoCell.h; sourceTree = "<group>"; };
@@ -674,6 +677,8 @@
 				C8F49AFE20C23F6F001F1449 /* WBDownloader.m */,
 				C8AD82F620C7702A002CDAD0 /* WBDownloadItem.h */,
 				C8AD82F720C7702A002CDAD0 /* WBDownloadItem.m */,
+				C8AD82F920C7D045002CDAD0 /* WBDownloadResponseSerializer.h */,
+				C8AD82FA20C7D045002CDAD0 /* WBDownloadResponseSerializer.m */,
 			);
 			path = WBDownloader;
 			sourceTree = "<group>";
@@ -909,6 +914,7 @@
 				C8990E412094067A0095D96A /* BookModel.m in Sources */,
 				C835762E20C12A66009DD1D6 /* FBShimmeringLayer.m in Sources */,
 				C8F1BFB0209326AC00AEFE72 /* HomeViewController.m in Sources */,
+				C8AD82FB20C7D045002CDAD0 /* WBDownloadResponseSerializer.m in Sources */,
 				C8F1BF9F209316D200AEFE72 /* UIView+TTKit.m in Sources */,
 				C8990E47209459660095D96A /* BookPageController.m in Sources */,
 				C89A7F6420A195160057B31A /* BookShelfController.m in Sources */,
