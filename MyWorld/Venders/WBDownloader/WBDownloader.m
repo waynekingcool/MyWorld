@@ -16,8 +16,8 @@ NSString *const WBDownloaderNoDiskSpaceNotification = @"WBDownloaderNoDiskSpaceN
 NSString *const WBDownloaderDownloadArrayObserveKeyPath = @"downloadMutableArray";
 NSString *const WBDownloaderCompleteArrayObserveKeyPath = @"completeMutableArray";
 
-static NSString *SODownloadProgressUserInfoStartTimeKey = @"WBDownloadProgressUserInfoStartTime";
-static NSString *SODownloadProgressUserInfoStartOffsetKey = @"WBDownloadProgressUserInfoStartOffsetKey";
+static NSString *WBDownloadProgressUserInfoStartTimeKey = @"WBDownloadProgressUserInfoStartTime";
+static NSString *WBDownloadProgressUserInfoStartOffsetKey = @"WBDownloadProgressUserInfoStartOffsetKey";
 
 //下载路径
 @interface WBDownloader(DownloadPath)
@@ -216,7 +216,43 @@ static NSString *SODownloadProgressUserInfoStartOffsetKey = @"WBDownloadProgress
             [strongSelf startNextTaskIfNecessary];
         });
     };
-    //xxx
+    
+    NSURL *(^destinationBlock)(NSURL *targetPath, NSURLResponse *response) = ^(NSURL *targetPath, NSURLResponse *response){
+        NSString *fileName = [targetPath lastPathComponent];
+        NSString *destinationPath = [weakSelf.downloaderPath stringByAppendingPathComponent:fileName];
+        return [NSURL fileURLWithPath:destinationPath];
+    };
+    
+    //创建task
+    void (^progressBlock)(NSProgress *downloadProgress) = ^(NSProgress *downloadProgress){
+        __strong __typeof__(weakSelf) strongSelf = weakSelf;
+        NSDictionary *progressInfo = downloadProgress.userInfo;
+        NSNumber *startTimeValue = progressInfo[WBDownloadProgressUserInfoStartTimeKey];
+        NSNumber *startOffsetValue = progressInfo[WBDownloadProgressUserInfoStartOffsetKey];
+        if (startTimeValue) {
+            CFAbsoluteTime startTime = [startTimeValue doubleValue];
+            int64_t startOffset = [startOffsetValue longLongValue];
+            NSInteger downloadSpeed = (NSInteger)((downloadProgress.completedUnitCount - startOffset) / (CFAbsoluteTimeGetCurrent() - startTime));
+            [strongSelf notifyDownloadItem:item withDownloadSpeed:downloadSpeed];
+        }else{
+            [downloadProgress setUserInfoObject:@(CFAbsoluteTimeGetCurrent()) forKey:WBDownloadProgressUserInfoStartTimeKey];
+            [downloadProgress setUserInfoObject:@(downloadProgress.completedUnitCount) forKey:WBDownloadProgressUserInfoStartOffsetKey];
+        }
+        [strongSelf notifyDownloadItem:item withDownloadProgress:downloadProgress.fractionCompleted];
+    };
+    
+    NSData *resumeData = [self resumenDataForItem:item];
+    if (resumeData) {
+        downloadTask = [self.sessionManager downloadTaskWithResumeData:resumeData progress:progressBlock destination:destinationBlock completionHandler:completeBlock];
+    }else{
+        downloadTask = [self.sessionManager downloadTaskWithRequest:request progress:progressBlock destination:destinationBlock completionHandler:completeBlock];
+    }
+    
+    [self startDownloadTask:downloadTask forItem:item];
+    if (taskId != UIBackgroundTaskInvalid) {
+        [application endBackgroundTask:taskId];
+        taskId = UIBackgroundTaskInvalid;
+    }
     
 }
 
@@ -249,6 +285,12 @@ static NSString *SODownloadProgressUserInfoStartOffsetKey = @"WBDownloadProgress
 
 
 #pragma mark - 同时下载数支持
+- (void)startDownloadTask:(NSURLSessionDownloadTask *)downloadTask forItem:(id<WBDownloadItem>)item{
+    self.tasks[[item.wb_downloadURL absoluteString]] = downloadTask;
+    [downloadTask resume];
+    ++self.activeRequestCount;
+}
+
 - (NSURLSessionDownloadTask *)downloadTaskForItem:(id<WBDownloadItem>)item{
     return self.tasks[[item.wb_downloadURL absoluteString]];
 }
