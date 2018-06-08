@@ -127,19 +127,29 @@
     self.progressView.dataDic = dic;
     [self.progressView show];
     
+    //test
+    NSOperationQueue *queue = [NSOperationQueue mainQueue];
+    queue.maxConcurrentOperationCount = 1;
+    NSMutableArray *opArray = [[NSMutableArray alloc]init];
+    
     //遍历已选中的章节,进行保存
     for (int i = 0; i < self.selectArray.count; i++) {
         NSString *select = self.selectArray[i];
         NSString *down = self.downLoadArray[i];
         if (select.boolValue && !down.boolValue) {
             //保存
-            BookInfoChapModel *model = self.dataArray[i];
-            [self loadContent:model.chapUrl WithId:model.chapId];
+            NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+                BookInfoChapModel *model = self.dataArray[i];
+                [self loadContent:model.chapUrl WithId:model.chapId];
+            }];
+            
+            [opArray addObject:op];
         }else{
             //跳过
-            
         }
     }
+    
+    [queue addOperations:[opArray copy] waitUntilFinished:NO];
 }
 
 - (void)rightButtonAction2{
