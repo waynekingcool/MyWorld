@@ -12,5 +12,5 @@
 
 ///小说url
 @property(nonatomic,copy) NSURL *bookUrl;
-
+@property(nonatomic,copy) NSString *bookTitle;
 @end

@@ -59,6 +59,31 @@
     
 }
 
+#pragma mark - 更新阅读记录
+- (void)updateRecord:(NSInteger)page WithChap:(NSInteger)chap WithTitle:(NSString *)title{
+    NSString *path = [RecordPath stringByAppendingPathComponent:title];
+    BookRecordModel *model = [[BookRecordModel alloc]init];
+    model.recordTitle = title;
+    model.recordPage = [NSString stringWithFormat:@"%ld",page];
+    model.recordChap = [NSString stringWithFormat:@"%ld",chap];
+    self.recordModel = model;
+    BOOL success = [NSKeyedArchiver archiveRootObject:model toFile:path];
+    if (success) {
+        WBLog(@"Title:%@  ChapTitle:%@  Page:%@ 缓存成功",model.recordTitle,model.recordChap,model.recordPage);
+    }else{
+        WBLog(@"Title:%@  ChapTitle:%@  Page:%@ 缓存失败",model.recordTitle,model.recordChap,model.recordPage);
+    }
+}
+
+//获取阅读记录
+- (BOOL)hasRecordWithPath:(NSString *)path{
+    self.recordModel = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    if (self.recordModel) {
+        return true;
+    }else{
+        return false;
+    }
+}
 
 #pragma mark - Private methods
 //将小说内容根据章节进行分割
@@ -132,5 +157,7 @@
     }
     return _chaptItleArray;
 }
+
+
 
 @end

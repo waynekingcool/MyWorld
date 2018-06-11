@@ -97,6 +97,12 @@
     [[RACObserve(self.viewModel, model) ignore:nil] subscribeNext:^(BookModel *model) {
         @strongify(self);
         WBLog(@"加载完毕咯 %@",model);
+        //如果有阅读记录
+        if ([self isHasRecord]) {
+            self.currenChap = [self.viewModel.recordModel.recordChap integerValue];
+            self.currentPage = [self.viewModel.recordModel.recordPage integerValue];
+        }
+        
         //设置容器
         self.pageController = [[BookPageController alloc]init];
         [self.pageViewController setViewControllers:@[[self createPageControllerWithChapter:self.currenChap page:self.currentPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
@@ -137,6 +143,7 @@
         self.changePage--;
     }
     
+    [self saveRecord:self.changePage WithChap:self.changeChap bookTitle:self.bookTitle];
     return [self createPageControllerWithChapter:self.changeChap page:self.changePage];
 }
 
@@ -160,6 +167,7 @@
         self.changePage++;
     }
     
+    [self saveRecord:self.changePage WithChap:self.changeChap bookTitle:self.bookTitle];
     return [self createPageControllerWithChapter:self.changeChap page:self.changePage];
 }
 
@@ -167,6 +175,18 @@
     //将要翻页时候执行该方法
     self.currentPage = self.changePage;
     self.currenChap = self.changeChap;
+}
+
+//保存阅读记录
+- (void)saveRecord:(NSInteger) page WithChap:(NSInteger) chap bookTitle:(NSString *)bookTitle{
+    [self.viewModel updateRecord:page WithChap:chap WithTitle:bookTitle];
+}
+
+#pragma mark - 判断是否有阅读记录
+- (BOOL)isHasRecord{
+    NSString *filePath = [RecordPath stringByAppendingPathComponent:self.bookTitle];
+    WBLog(@"缓存的路径:%@",filePath);
+    return [self.viewModel hasRecordWithPath:filePath];
 }
 
 #pragma mark - TableViewDelegate

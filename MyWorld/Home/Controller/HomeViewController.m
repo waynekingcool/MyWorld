@@ -69,11 +69,15 @@
         BookController *vc = [[BookController alloc]init];
         NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"test"withExtension:@"txt"];
         vc.bookUrl = fileURL;
+        vc.bookTitle = @"test";
+        vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         BookController *vc = [[BookController alloc]init];
         NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"紫川"withExtension:@"txt"];
         vc.bookUrl = fileURL;
+        vc.bookTitle = @"紫川";
+        vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
     
